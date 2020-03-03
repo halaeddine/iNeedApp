@@ -67,6 +67,7 @@ export class AuthenticationService {
   }
  
   logout() {
+    //abc
     return this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
       this.router.navigateByUrl('/login');
