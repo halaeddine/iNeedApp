@@ -24,11 +24,7 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
-  // { 
-  //   path: 'dashboard', 
-  //   // canActivate: [AuthGuard],
-  //   loadChildren: './members/member-routing.module#MemberRoutingModule'
-  // },
+  
   {
     path: 'dashboard',
     // canActivate: [AuthGuard],
