@@ -16,11 +16,11 @@ export class DashboardPage implements OnInit {
 	this.auth.isAuthenticated();  
 	
   }
-check(){
-	if(this.auth.isAuthenticated()){
-		alert('asd');
-	}
-}
+// check(){
+// 	if(this.auth.isAuthenticated()){
+// 		alert('asd');
+// 	}
+// }
 logout(){
 	this.auth.logout();
 }
