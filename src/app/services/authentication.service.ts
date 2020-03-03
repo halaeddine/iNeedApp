@@ -69,11 +69,20 @@ export class AuthenticationService {
   }
  
   logout() {
-    //abc
-    return this.storage.remove(TOKEN_KEY).then(() => {
+    
+ return new Promise((resolve, reject)=>{
+      this.http.post('http://192.168.0.107:3030/api/logout',{},{})
+      .subscribe(data => {
+        console.log(data);
+       this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
       this.router.navigateByUrl('/login');
     });
+      }, (err)=>{
+        reject(err);
+        console.log(err);
+      });
+  });
   }
  
   isAuthenticated() {
