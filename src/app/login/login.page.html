@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	
+	  <img class="login-img" src="../assets/icon/favicon.png" />
+	  <form (ngSubmit)="loginForm()">
+	<ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input type="text" [(ngModel)]="data.username" name="username" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="Password" [(ngModel)]="data.password" name="password" required></ion-input>
+          </ion-item>
+          
+          	<ion-button type="submit" expand="block">Login</ion-button>
+          </form>
+          	<ion-button expand="block" color="secondary" routerLink="/register">Register</ion-button>
+</ion-content>
