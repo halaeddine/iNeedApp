@@ -1,15 +1,42 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      <ion-button> <!-- (click)="logout()" -->
+      	 <ion-menu-button></ion-menu-button>
+       <!--  <ion-icon slot="icon-only" name="log-out"></ion-icon> -->
       </ion-button>
     </ion-buttons>
-    <ion-title>My Dashboard</ion-title>
+    <ion-title>iNeedApp</ion-title>
   </ion-toolbar>
 </ion-header>
- 
+<ion-content [fullscreen]="true">
+  
 
-<ion-content>
+  <div id="container">
+    <!-- <strong class="capitalize">{{ folder }}</strong>
+    <ion-button  (click)="tst()">test</ion-button> -->
+<ion-searchbar showCancelButton="never"
+    [(ngModel)]="searchTerm"
+    (ionChange)="setFilteredItems()"
+  ></ion-searchbar>
 
+
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let cat of cats">
+      <div (click)="gotoHomePage([cat.id])">
+        <ion-card>
+          <ion-card-header>
+           <img src="././assets/icon/favicon.png"/>
+             <ion-card-subtitle> {{cat.id}} {{cat.name}} </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+    
+  </div>
 </ion-content>
