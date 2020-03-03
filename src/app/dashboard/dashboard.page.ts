@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
-   public searchTerm: string = "";
+  public searchTerm: string = "";
   public categories:any = [];
   public cats:any = [];
 
