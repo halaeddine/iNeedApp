@@ -26,18 +26,7 @@ export class AppComponent  implements OnInit {
       title: 'Login',
       url: '/login',
       icon: 'log-in'
-    }
-    // {
-    //   title: 'Home',
-    //   url: '/home',
-    //   icon: 'home'
-    // },
-    // {
-    //   title: 'List',
-    //   url: '/list',
-    //   icon: 'list'
-    // },
-    
+    }   
   ];
 
   constructor(

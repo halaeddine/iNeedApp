@@ -40,24 +40,25 @@ export class AuthenticationService {
  login(_data) {
 
      return new Promise((resolve, reject)=>{
-      this.http.post('http://192.168.1.109:3030/api/login',_data,{})
+      this.http.post('http://192.168.0.107:3030/api/login',_data,{})
       .subscribe(data => {
-       switch(data.result){
+        console.log(data);
+       switch(data.result.result){
          case 0:
          this.Toast(data.desc);
-           console.log(data.desc);
+           console.log(data.result.desc);
          break;
          case 1:
          this.Toast(data.desc);
-           console.log(data.desc);
+           console.log(data.result.desc);
          break;
          case 2:
-         this.Toast(data.desc);
-         this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
+         this.Toast(data.result.desc);
+         this.storage.set(TOKEN_KEY, data.session._token).then(() => {
             this.authenticationState.next(true);
          });
          this.router.navigateByUrl('/dashboard');
-           console.log(data.desc);
+           console.log(data.result.desc);
          break;
        }
       }, (err)=>{
