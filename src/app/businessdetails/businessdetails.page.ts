@@ -13,7 +13,7 @@ export class BusinessdetailsPage implements OnInit {
  private details:any;
 
   constructor(public navCtrl: NavController,private route: ActivatedRoute) { 
-  	this.details = {
+  	this.details = [{
   		'businessName':'Barber Hussein',
   		'businessPhoneNumber':'70785760',
   		'businessDesc' : 'New offers on the hair cut',
@@ -22,7 +22,7 @@ export class BusinessdetailsPage implements OnInit {
   			'catNameEn': 'Barber',
   			'catNameAr': 'حلاق'
   		}
-  	}
+  	}];
 
   }
 
