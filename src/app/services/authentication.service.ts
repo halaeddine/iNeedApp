@@ -29,6 +29,7 @@ export class AuthenticationService {
   checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
+        console.log("Token: "+res);
         this.authenticationState.next(true);
         return  this.isAuthenticated();
       }
