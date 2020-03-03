@@ -84,6 +84,7 @@ export class AuthenticationService {
  
 
 
+
  async Toast(data) {
     const toast = await this.toastController.create({
       message: data,

@@ -15,9 +15,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
 	this.auth.isAuthenticated();  
 	
-	// if(this.auth.isAuthenticated()){
-	// 	console.log('abc');
-	// }
   }
 check(){
 	if(this.auth.isAuthenticated()){
