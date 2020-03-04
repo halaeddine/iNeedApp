@@ -37,9 +37,9 @@ export class DashboardPage implements OnInit {
 
   }
 
-   gotoHomePage(id) {
+   gotoBusinessesPage(id) {
 
-    this.navCtrl.navigateForward('businessdetails/'+ id);
+    this.navCtrl.navigateForward('businesses/'+ id);
 
   }
 

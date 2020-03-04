@@ -71,7 +71,7 @@ export class AuthenticationService {
   logout() {
     
  return new Promise((resolve, reject)=>{
-      this.http.post('http://192.168.0.107:3030/api/logout',{},{})
+      this.http.get('http://192.168.0.107:3030/api/logout',{},{})
       .subscribe(data => {
         console.log(data);
        this.storage.remove(TOKEN_KEY).then(() => {
