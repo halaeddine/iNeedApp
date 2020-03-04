@@ -1,0 +1,56 @@
+.card {
+    margin: 0 auto;
+
+    .header {
+        height: 150px;
+
+        .avatar {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            margin: 0 auto;
+
+            img {
+                display: block;
+                border-radius: 50%;
+                position: absolute;
+                bottom: calc(-1*(30px + 0px));
+                border: 1px solid #3880ff;
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+.card-body {
+    background-color: #ffffff;
+    padding-top: 0px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    height: calc(100vh - (200px + 56px));
+    overflow: hidden;
+
+    .user-meta {
+        padding-top: 40px;
+
+        .Username {
+            font-size: 24px;
+            font-weight: 600;
+            color: #303940;
+        }
+
+        .country {
+            font-size: 90%;
+            color: #949ea6;
+            text-transform: uppercase;
+            margin: 0 auto;
+        }
+    }
+}
+
+ion-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
