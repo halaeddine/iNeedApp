@@ -18,11 +18,6 @@ export class AppComponent  implements OnInit {
       icon: 'Home'
     },
     {
-      title: 'businesses',
-      url: 'businesses/businesses.page',
-      icon: 'business'
-    },
-    {
       title: 'Login',
       url: '/login',
       icon: 'log-in'

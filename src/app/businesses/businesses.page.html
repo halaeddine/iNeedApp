@@ -7,6 +7,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  
+
+ <div id="container">
+ <ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let b of businesses">
+      <div (click)="goToBusinessDetails([b.id])">
+        <ion-card>
+          <ion-card-header>
+           <img src="././assets/icon/favicon.png"/>
+             <ion-card-subtitle> {{b.businessName}} </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+    
+  </div>
 
 </ion-content>
