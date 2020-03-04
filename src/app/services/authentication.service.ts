@@ -38,9 +38,8 @@ export class AuthenticationService {
   }
  
  login(_data) {
-
      return new Promise((resolve, reject)=>{
-      this.http.post('http://192.168.0.107:3030/api/login',_data,{})
+      this.http.post('http://www.brands-tech.com/api/login',_data,{})
       .subscribe(data => {
         console.log(data);
        switch(data.result.result){

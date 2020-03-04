@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My-Businesses</ion-title>
+  	<ion-buttons slot="start">
+      <ion-button>
+      	 <ion-menu-button></ion-menu-button>
+      </ion-button>
+      </ion-buttons>
+    <ion-title>My Businesses</ion-title>
+    <ion-button class="logbutton" (click)="logout()"><ion-icon slot="icon-only" name="log-out"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
