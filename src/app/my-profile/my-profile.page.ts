@@ -12,8 +12,4 @@ export class MyProfilePage implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-	this.auth.logout();
-}
-
 }

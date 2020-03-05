@@ -68,14 +68,14 @@ export class AuthenticationService {
   }
  
   logout() {
-    
  return new Promise((resolve, reject)=>{
-      this.http.get('http://192.168.0.107:3030/api/logout',{},{})
+      this.http.get('http://www.brands-tech.com/api/logout',{})
       .subscribe(data => {
-        console.log(data);
-       this.storage.remove(TOKEN_KEY).then(() => {
+       console.log(data);
+      this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
-      this.router.navigateByUrl('/login');
+      // this.router.navigateByUrl('/login');
+
     });
       }, (err)=>{
         reject(err);
@@ -86,10 +86,10 @@ export class AuthenticationService {
  
   isAuthenticated() {
     console.log(this.authenticationState.value);
-    if(!this.authenticationState.value){
-      this.router.navigateByUrl('/login');
-    }
-    // return this.authenticationState.value;
+    // if(!this.authenticationState.value){
+    //   this.router.navigateByUrl('/login');
+    // }
+    return this.authenticationState.value;
 }
  
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,26 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent  implements OnInit {
   public selectedIndex = 0; 
-  public appPages = [
+  public appPages = [];
+   
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private auth: AuthenticationService
+  ) 
+  {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then ( () => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+       this.auth.authenticationState.subscribe(state => {
+        if (state) {
+     this.appPages = [
     {
       title: 'Dashboard',
       url: '/dashboard',
@@ -28,27 +47,28 @@ export class AppComponent  implements OnInit {
       icon: 'Business'
     },
     {
+      title: 'Logout',
+      url: 'logout()',
+      icon: 'log-out'
+    }   
+  ]
+        } else {
+         this.appPages = [
+    {
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: 'Home'
+    },
+    {
       title: 'Login',
       url: '/login',
       icon: 'log-in'
     }   
-  ];
-
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
-    this.initializeApp();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+  ]
+        }
     });
+});
   }
-
    ngOnInit() {
     const path = window.location.pathname.split('dashboard/')[1];
     if (path !== undefined) {

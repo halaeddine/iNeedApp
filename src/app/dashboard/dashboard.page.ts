@@ -15,11 +15,8 @@ export class DashboardPage implements OnInit {
   public cats:any = [];
 
   constructor(private route: ActivatedRoute ,public navCtrl: NavController, private auth: AuthenticationService) {
-
-// setTimeout(this.check(),2000);
-
-
-    this.categories = [{
+    this.categories = [
+  {
     'icon':'././assets/icon/favicon.png',
     'id':1,
     'name':'Barber Shop / حلاق'
@@ -34,9 +31,8 @@ export class DashboardPage implements OnInit {
     'id':3,
     'name':'bilal / حلاق'
   }];
-
-  }
-
+ 
+}
    gotoBusinessesPage(id) {
 
     this.navCtrl.navigateForward('businesses/'+ id);
@@ -46,7 +42,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.setFilteredItems();
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
-    /*this.auth.isAuthenticated();  */
   }
   
  setFilteredItems() {
@@ -64,8 +59,13 @@ export class DashboardPage implements OnInit {
 
 // check(){
 // 	if(this.auth.isAuthenticated()){
-// 		alert('asd');
+// 		alert('in');
+//     return true;
 // 	}
+//   else{
+//     alert("out")
+//     return false;
+//   }
 // }
 logout(){
 	this.auth.logout();
