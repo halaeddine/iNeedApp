@@ -27,7 +27,7 @@ export class AppComponent  implements OnInit {
     this.platform.ready().then ( () => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
+     
        this.auth.authenticationState.subscribe(state => {
         if (state) {
      this.appPages = [
@@ -48,7 +48,7 @@ export class AppComponent  implements OnInit {
     },
     {
       title: 'Logout',
-      url: 'logout()',
+      
       icon: 'log-out'
     }   
   ]
@@ -74,6 +74,9 @@ export class AppComponent  implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+     // if(this.auth.checkToken()){
+     //    this.auth.authenticationState.next(true);
+     //  }
   }
   
 }

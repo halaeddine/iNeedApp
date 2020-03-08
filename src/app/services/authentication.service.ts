@@ -32,13 +32,11 @@ export class AuthenticationService {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         console.log("Token: "+res);
-        // this.authenticationState.next(true);
-        // return  this.isAuthenticated();
-      
+        this.authenticationState.next(true);
         return true;
       }else{
         console.log('false');
-        
+         this.authenticationState.next(false);
         return false;
       }
     });
@@ -73,6 +71,7 @@ export class AuthenticationService {
        }
       }, (err)=>{
         reject(err);
+        alert(err);
         console.log(err);
       });
   });
@@ -84,11 +83,7 @@ export class AuthenticationService {
       .subscribe(data => {
        console.log(data);
       this.storage.remove(TOKEN_KEY).then(() => {
-        
-          this.authenticationState.next(false);
-          // this.router.navigateByUrl('/login');
-          // this.checkToken();
-        
+      this.authenticationState.next(false);        
     });
       }, (err)=>{
         reject(err);

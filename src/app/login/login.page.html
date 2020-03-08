@@ -6,11 +6,11 @@
     <ion-title>
       Login
     </ion-title>
+    <ion-spinner class="loader" name="dots" *ngIf ="loader"></ion-spinner>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	
 	  <img class="login-img" src="../assets/icon/favicon.png" />
 	  <form (ngSubmit)="loginForm()">
 	<ion-item>
