@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import {NavController} from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +14,9 @@ export class DashboardPage implements OnInit {
   public searchTerm: string = "";
   public categories:any = [];
   public cats:any = [];
+  // this.loggedIn:any;
 
-  constructor(private route: ActivatedRoute ,public navCtrl: NavController, private auth: AuthenticationService) {
+  constructor(private imagePicker: ImagePicker,private route: ActivatedRoute ,public navCtrl: NavController, private auth: AuthenticationService) {
     this.categories = [
   {
     'icon':'././assets/icon/favicon.png',
@@ -31,7 +33,7 @@ export class DashboardPage implements OnInit {
     'id':3,
     'name':'bilal / حلاق'
   }];
- 
+// this.auth.checkToken();
 }
    gotoBusinessesPage(id) {
 
@@ -41,8 +43,24 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this.setFilteredItems();
+   
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
+
+  image(){
+  let options= {
+maximumImagesCount: 1,
+allowEdit: true,
+targetWidth: 100,
+targetHeight: 100,
+quality: 50,
+}
+  this.imagePicker.getPictures(options).then((results) => {
+  for (var i = 0; i < results.length; i++) {
+      console.log('Image URI: ' + results[i]);
+  }
+}, (err) => { });
+}
   
  setFilteredItems() {
 

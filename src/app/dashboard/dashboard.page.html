@@ -7,12 +7,12 @@
       </ion-button>
     </ion-buttons>
     <ion-title>iNeedApp</ion-title>
-    <ion-button class="logbutton" (click)="logout()"><ion-icon slot="icon-only" name="log-out"></ion-icon></ion-button>
+    <!-- <ion-button *ngIf="auth.loggedIn" class="logbutton" (click)="logout()"><ion-icon slot="icon-only" name="log-out"></ion-icon></ion-button> -->
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
   
-
+<ion-button (click)="image()">Change Image</ion-button>
   <div id="container">
 <ion-searchbar showCancelButton="never"
     [(ngModel)]="searchTerm"
