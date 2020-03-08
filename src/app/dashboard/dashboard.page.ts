@@ -85,7 +85,5 @@ quality: 50,
 //     return false;
 //   }
 // }
-logout(){
-	this.auth.logout();
-}
+
 }

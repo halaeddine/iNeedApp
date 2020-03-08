@@ -18,7 +18,6 @@ loader:any = false;
  
   loginForm() {
      this.loader = true;
-  	// console.log(this.data);
     this.authService.login(this.data).then(()=>{
       this.loader = false;
     },err=>{

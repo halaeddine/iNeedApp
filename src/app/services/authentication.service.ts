@@ -5,7 +5,8 @@ import { BehaviorSubject } from 'rxjs';
  import { HttpClient  } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+// import { HttpClient } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
 const TOKEN_KEY = 'auth-token';
 
 @Injectable({
@@ -15,12 +16,14 @@ const TOKEN_KEY = 'auth-token';
 export class AuthenticationService {
 
   data:any;
+  data1:any;
   authenticationState = new BehaviorSubject(false);
 
   constructor(
    private storage: Storage,
    private plt: Platform,
-   private http: HttpClient,
+   private http: HTTP,
+   // private http: HttpClient,
    public toastController: ToastController,
    private router: Router) { 
     this.plt.ready().then(() => {
@@ -44,43 +47,34 @@ export class AuthenticationService {
   }
  
  login(_data) {
+
      return new Promise((resolve, reject)=>{
       this.http.post('http://www.brands-tech.com/api/login',_data,{})
-      .subscribe(data => {
-        this.data = data;
-        console.log(data);
-       switch(this.data.result.result){
+      .then(data => {
+        this.data = JSON.parse(data.data);
+       switch(this.data.result){
          case 0:
-         this.Toast(this.data.desc);
-           // console.log(data.result.desc);
-         break;
          case 1:
          this.Toast(this.data.desc);
-           // console.log(data.result.desc);
          break;
          case 2:
-         this.Toast(this.data.result.desc);
+         this.Toast(this.data.desc);
          this.storage.set(TOKEN_KEY, this.data.session._token).then(() => {
             this.authenticationState.next(true);
-            // this.checkToken();
          });
          this.router.navigateByUrl('/dashboard');
-
-           // console.log(data.result.desc);
          break;
        }
-      }, (err)=>{
+      }).catch(err=>{
         reject(err);
-        alert(err);
-        console.log(err);
       });
   });
   }
  
   logout() {
  return new Promise((resolve, reject)=>{
-      this.http.get('http://www.brands-tech.com/api/logout',{})
-      .subscribe(data => {
+      this.http.get('http://www.brands-tech.com/api/logout',{},{})
+      .then(data => {
        console.log(data);
       this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);        
@@ -94,9 +88,6 @@ export class AuthenticationService {
  
   isAuthenticated() {
     console.log(this.authenticationState.value);
-    // if(!this.authenticationState.value){
-    //   this.router.navigateByUrl('/login');
-    // }
     return this.authenticationState.value;
 }
  

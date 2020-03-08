@@ -8,7 +8,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
   styleUrls: ['./my-profile.page.scss'],
 })
 export class MyProfilePage implements OnInit {
-
+images:any;
   constructor(private imagePicker: ImagePicker) { }
 
   ngOnInit() {
@@ -24,9 +24,10 @@ targetHeight: 100,
 quality: 50,
 }
 	this.imagePicker.getPictures(options).then((results) => {
-  for (var i = 0; i < results.length; i++) {
-      console.log('Image URI: ' + results[i]);
-  }
+    this.images = results[0];
+  // for (var i = 0; i < results.length; i++) {
+      // results[i]
+  // }
 }, (err) => { });
 }
 
