@@ -1,9 +1,8 @@
 <ion-header>
   <ion-toolbar  class="toolbar">
     <ion-buttons slot="start">
-      <ion-button> <!-- (click)="logout()" -->
+      <ion-button>
       	 <ion-menu-button></ion-menu-button>
-       <!--  <ion-icon slot="icon-only" name="log-out"></ion-icon> -->
       </ion-button>
     </ion-buttons>
     <ion-title>iNeedApp</ion-title>
@@ -12,15 +11,27 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   
-<ion-button (click)="image()">Change Image</ion-button>
+
   <div id="container">
 <ion-searchbar showCancelButton="never"
     [(ngModel)]="searchTerm"
     (ionChange)="setFilteredItems()"
+    class="searchbar"
   ></ion-searchbar>
 
+<ion-list>
+  <ion-item *ngFor="let cat of cats" lines="full" (click)="gotoBusinessesPage([cat.id])">
+          <ion-avatar slot="start">
+            <img src="././assets/icon/favicon.png">
+          </ion-avatar>
+          <ion-label>
+            <h2> {{cat.id}} {{cat.name}} <span class="arrow">></span></h2>
 
-<ion-grid>
+          </ion-label>
+        </ion-item>
+</ion-list>
+
+<!-- <ion-grid>
   <ion-row>
     <ion-col *ngFor="let cat of cats">
       <div (click)="gotoBusinessesPage([cat.id])">
@@ -33,6 +44,6 @@
       </div>
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid> -->
 </div>
 </ion-content>

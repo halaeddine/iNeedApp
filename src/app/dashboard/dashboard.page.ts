@@ -47,20 +47,7 @@ export class DashboardPage implements OnInit {
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
-  image(){
-  let options= {
-maximumImagesCount: 1,
-allowEdit: true,
-targetWidth: 100,
-targetHeight: 100,
-quality: 50,
-}
-  this.imagePicker.getPictures(options).then((results) => {
-  for (var i = 0; i < results.length; i++) {
-      console.log('Image URI: ' + results[i]);
-  }
-}, (err) => { });
-}
+
   
  setFilteredItems() {
 

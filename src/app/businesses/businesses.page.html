@@ -1,7 +1,10 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar  class="toolbar">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <!-- <ion-back-button></ion-back-button> -->
+      <ion-button>
+         <ion-menu-button></ion-menu-button>
+      </ion-button>
     </ion-buttons>
     <ion-title>Businesses</ion-title>
   </ion-toolbar>
@@ -11,7 +14,19 @@
   
 
  <div id="container">
- <ion-grid>
+
+<ion-list>
+  <ion-item *ngFor="let b of businesses" lines="full" (click)="goToBusinessDetails([b.id])">
+          <ion-avatar slot="start">
+            <img src="././assets/icon/favicon.png">
+          </ion-avatar>
+          <ion-label>
+            <h2>  {{b.businessName}} <span class="arrow">></span></h2>
+          </ion-label>
+        </ion-item>
+</ion-list>
+
+ <!-- <ion-grid>
   <ion-row>
     <ion-col *ngFor="let b of businesses">
       <div (click)="goToBusinessDetails([b.id])">
@@ -24,7 +39,7 @@
       </div>
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid> -->
 
 
     

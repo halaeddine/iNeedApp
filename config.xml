@@ -106,5 +106,6 @@
     <plugin name="cordova-plugin-advanced-http" spec="^2.4.1">
         <variable name="OKHTTP_VERSION" value="3.10.0" />
     </plugin>
+    <plugin name="com-sarriaroman-photoviewer" spec="^1.2.4" />
     <engine name="android" spec="^7.1.4" />
 </widget>
