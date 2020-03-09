@@ -28,7 +28,7 @@ export class BusinessdetailsPage implements OnInit {
 
   ngOnInit() {
 
-    // this._get = this.route.snapshot.paramMap.get('id');
+    this._get = this.route.snapshot.paramMap.get('id');
 
   }
 
