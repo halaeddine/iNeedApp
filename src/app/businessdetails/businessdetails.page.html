@@ -1,7 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-    	 <ion-back-button></ion-back-button>
+    	 <ion-button>
+         <ion-menu-button></ion-menu-button>
+      </ion-button>
     </ion-buttons>
     <ion-title>businessdetails</ion-title>
   </ion-toolbar>
@@ -26,6 +28,7 @@
 
   <ion-row>
    <ion-col>
+    {{businessdetails}}
 <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-title> {{details.businessName}}</ion-card-title>

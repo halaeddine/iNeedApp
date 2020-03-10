@@ -16,7 +16,7 @@ proImage:any = '././assets/player104.png';
   }
 
 showImage(){
-  this.photoViewer.show("https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png");
+  this.photoViewer.show("http://www.brands-tech.com/public/images/player104.png");
 }
 
 

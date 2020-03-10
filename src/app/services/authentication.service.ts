@@ -16,14 +16,14 @@ const TOKEN_KEY = 'auth-token';
 export class AuthenticationService {
 
   data:any;
-  data1:any;
+  businessdetails:any;
+  categories:any;
   authenticationState = new BehaviorSubject(false);
 
   constructor(
    private storage: Storage,
    private plt: Platform,
    private http: HTTP,
-   // private http: HttpClient,
    public toastController: ToastController,
    private router: Router) { 
     this.plt.ready().then(() => {
@@ -45,9 +45,29 @@ export class AuthenticationService {
     });
 
   }
- 
+ getBusinessDetails(id){
+       return new Promise((resolve, reject)=>{
+        this.http.get('http://www.brands-tech.com/api/getbusinessdetails',id,{})
+        .then(data => {
+          this.businessdetails = data;
+         
+        }).catch(err=>{
+          reject(err);
+        });
+      });
+ }
+ getAllCategories(){
+       return new Promise((resolve, reject)=>{
+        this.http.get('http://www.brands-tech.com/api/getallcategories',{},{})
+        .then(data => {
+          this.categories = JSON.parse(data.data);
+         
+        }).catch(err=>{
+          reject(err);
+        });
+      });
+ }
  login(_data) {
-
      return new Promise((resolve, reject)=>{
       this.http.post('http://www.brands-tech.com/api/login',_data,{})
       .then(data => {
@@ -91,9 +111,6 @@ export class AuthenticationService {
     return this.authenticationState.value;
 }
  
-
-
-
  async Toast(data) {
     const toast = await this.toastController.create({
       message: data,
