@@ -28,10 +28,12 @@ export class BusinessdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this._get = this.route.snapshot.paramMap.get('id');
-    this.getBusinessDetails(this._get);
+    this.route.params.subscribe(params => {
+     this._get = params["id"];
+      console.log(this._get);
+    });
   }
 getBusinessDetails(id){
-this.auth.getBusinessDetails(id);
+// this.auth.getBusinessDetails(id);
 }
 }

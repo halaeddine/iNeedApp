@@ -19,12 +19,12 @@
   ></ion-searchbar>
 
 <ion-list>
-  <ion-item *ngFor="let cat of auth.categories" lines="full" (click)="gotoBusinessesPage([cat.id])">
+  <ion-item *ngFor="let cat of categories" lines="full" (click)="gotoBusinessesPage([cat.catId])">
           <ion-avatar slot="start">
             <img src="././assets/icon/favicon.png">
           </ion-avatar>
           <ion-label>
-            <h2> {{cat.catNameEn}} - {{cat.catNameAr}}<span class="arrow">></span></h2>
+            <h2> {{cat.catNameEn}} - {{cat.catNameEn}}<span class="arrow">></span></h2>
           </ion-label>
         </ion-item>
 </ion-list>

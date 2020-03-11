@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import {NavController} from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-// import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -17,30 +19,35 @@ export class DashboardPage implements OnInit {
   // this.loggedIn:any;
 
   constructor(private imagePicker: ImagePicker,
-    private route: ActivatedRoute ,
+    private router: Router ,
     public navCtrl: NavController,
     private auth: AuthenticationService) {
     this.categories = [
   {
-    'icon':'././assets/icon/favicon.png',
-    'id':1,
-    'name':'Barber Shop / حلاق'
+    'catIcon':'././assets/icon/favicon.png',
+    'catId':1,
+    'catNameEn':'Barber Shop / حلاق'
   },
   {
-    'icon':'././assets/icon/favicon.png',
-    'id':2,
-    'name':'hussein / حداد'
+    'catIcon':'././assets/icon/favicon.png',
+    'catId':2,
+    'catNameEn':'hussein / حداد'
   },
   {
-    'icon':'././assets/icon/favicon.png',
-    'id':3,
-    'name':'bilal / حلاق'
+    'catIcon':'././assets/icon/favicon.png',
+    'catId':3,
+    'catNameEn':'bilal / حلاق'
   }];
 
 }
    gotoBusinessesPage(id) {
+let navigationExtras: NavigationExtras = {
+    queryParams: {
+        id: id
+    }
+};
 
-    this.navCtrl.navigateForward('businesses/'+ id);
+    this.navCtrl.navigateForward(['businesses/'+ id],navigationExtras);
 
   }
 
@@ -55,7 +62,7 @@ export class DashboardPage implements OnInit {
  setFilteredItems() {
 
    this.cats = this.categories;
-    this.cats = this.filterItems(this.searchTerm);
+    // this.cats = this.filterItems(this.searchTerm);
  }
 
  filterItems(searchTerm) {

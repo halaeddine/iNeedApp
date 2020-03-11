@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-
+import { AuthenticationService } from '../services/authentication.service';
+import { Storage } from '@ionic/storage';
+const userData = 'userData';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.page.html',
   styleUrls: ['./my-profile.page.scss'],
 })
+
 export class MyProfilePage implements OnInit {
 images:any;
+userInfo:any;
 proImage:any = '././assets/player104.png';
-  constructor(private imagePicker: ImagePicker, private photoViewer: PhotoViewer) { }
+  constructor(private imagePicker: ImagePicker,
+   private photoViewer: PhotoViewer,
+   private auth:AuthenticationService,
+   private storage:Storage) { }
 
   ngOnInit() {
+    this.getUserData();
   }
 
 showImage(){
@@ -21,6 +29,8 @@ showImage(){
 
 
 image(){
+  
+  this.auth.uploadProfileImage(this.images);
 	let options= {
             maximumImagesCount: 1,
             allowEdit: true,
@@ -31,10 +41,17 @@ image(){
       }
 	 this.imagePicker.getPictures(options).then((results) => {
       this.images = results[0];
-  // for (var i = 0; i < results.length; i++) {
-      // results[i]
-  // }
-}, (err) => { });
+      this.auth.uploadProfileImage(this.images);
+      }, (err) => {
+        alert(err);
+       });
 }
 
+
+getUserData(){
+  this.storage.get('userData').then(val=>{
+    this.userInfo = val;
+    alert(JSON.stringify(val));
+  })
+}
 }

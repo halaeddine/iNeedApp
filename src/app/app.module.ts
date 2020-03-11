@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
-// import { HttpModule }       from '@angular/http';
+// import { HttpModule }    from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';

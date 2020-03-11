@@ -5,9 +5,10 @@ import { BehaviorSubject } from 'rxjs';
  import { HttpClient  } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-// import { HttpClient } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 import { HTTP } from '@ionic-native/http/ngx';
 const TOKEN_KEY = 'auth-token';
+const userData = 'userData';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,18 @@ export class AuthenticationService {
 
   data:any;
   businessdetails:any;
+  businesses:any;
   categories:any;
+  userdata:any;
+  userId:any;
+  updatedImage:any;
   authenticationState = new BehaviorSubject(false);
 
   constructor(
    private storage: Storage,
    private plt: Platform,
    private http: HTTP,
+   private httpp: HttpClient,
    public toastController: ToastController,
    private router: Router) { 
     this.plt.ready().then(() => {
@@ -67,6 +73,45 @@ export class AuthenticationService {
         });
       });
  }
+
+getBusinessesWithCatId(id){
+   return new Promise((resolve, reject)=>{
+        this.http.get('http://www.brands-tech.com/api/getbusinesseswithsamecategory',{catId:id},{})
+        .then(data => {
+          this.businesses = JSON.parse(data.data);
+        }).catch(err=>{
+          reject(err);
+        });
+      });
+}
+
+ getUserData(id){
+     return new Promise((resolve, reject)=>{
+        this.http.get('http://www.brands-tech.com/api/getuserdata',id,{})
+        .then(data => {
+          this.userdata = JSON.parse(data.data);
+           this.userId = this.userdata.userId;
+        }).catch(err=>{
+          reject(err);
+        });
+      });
+ }
+
+
+
+uploadProfileImage(data){
+  return new Promise((resolve, reject)=>{
+        this.http.post('http://www.brands-tech.com/api/uploadprofileimage',{'image':data,'userId':this.userId},{})
+        .then(data => {
+          alert(JSON.stringify(data));
+          this.Toast("Profile Image Updated Successfully");
+          this.updatedImage = JSON.parse(data.data).user.image;
+        }).catch(err=>{
+          reject(err);
+        });
+      });
+}
+
  login(_data) {
      return new Promise((resolve, reject)=>{
       this.http.post('http://www.brands-tech.com/api/login',_data,{})
@@ -80,9 +125,11 @@ export class AuthenticationService {
          case 2:
          this.Toast(this.data.desc);
          this.storage.set(TOKEN_KEY, this.data.session._token).then(() => {
-            this.authenticationState.next(true);
+              this.storage.set(userData, this.data.userData).then(() => {
+                 this.authenticationState.next(true);
+                 this.router.navigateByUrl('/dashboard');
+           });
          });
-         this.router.navigateByUrl('/dashboard');
          break;
        }
       }).catch(err=>{
