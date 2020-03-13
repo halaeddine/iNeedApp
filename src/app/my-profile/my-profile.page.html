@@ -11,7 +11,7 @@
 
 <ion-content fullscreen="true" slot="fixed">
 
-<div class="card">
+<div  class="card">
   <div class="header">
     <div class="avatar">
       <img class="img" (click)="showImage()" [src]="proImage"/>
@@ -20,10 +20,11 @@
     
   </div>
 </div>
-{{userInfo}}
-<div class="card-body">
+<div class="card-body ion-padding">
   <div class="user-meta ion-text-center">
-    <h3 class="Username">Bilal Alezzi</h3>
+    <h3 class="Username">{{auth.userdata.userId}}</h3>
+    <h3 class="Username">{{auth.userdata.username}}</h3>
+    <h3 class="Username">{{auth.userdata.fname}}</h3>
     <h5 class="country">Beirut</h5>
     <h6 >Businesses:
     </h6>

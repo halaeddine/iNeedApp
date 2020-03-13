@@ -2,7 +2,7 @@ import { Platform, NavController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
- import { HttpClient  } from '@angular/common/http';
+import { HttpClient  } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { IonicStorageModule } from '@ionic/storage';
@@ -87,11 +87,10 @@ getBusinessesWithCatId(id){
 
  getUserData(id){
      return new Promise((resolve, reject)=>{
-        this.http.get('http://www.brands-tech.com/api/getuserdata',id,{})
+        this.http.get('http://www.brands-tech.com/api/getuserdata',{userId:id},{})
         .then(data => {
           this.userdata = JSON.parse(data.data);
-           this.userId = this.userdata.userId;
-        }).catch(err=>{
+          }).catch(err=>{
           reject(err);
         });
       });
@@ -124,8 +123,9 @@ uploadProfileImage(data){
          break;
          case 2:
          this.Toast(this.data.desc);
+         console.log(data);
          this.storage.set(TOKEN_KEY, this.data.session._token).then(() => {
-              this.storage.set(userData, this.data.userData).then(() => {
+              this.storage.set(userData, JSON.parse(this.data.session.userId)).then(() => {
                  this.authenticationState.next(true);
                  this.router.navigateByUrl('/dashboard');
            });
@@ -144,8 +144,10 @@ uploadProfileImage(data){
       .then(data => {
        console.log(data);
       this.storage.remove(TOKEN_KEY).then(() => {
+        this.storage.remove(userData).then(() => {
       this.authenticationState.next(false);        
     });
+   });
       }, (err)=>{
         reject(err);
         console.log(err);

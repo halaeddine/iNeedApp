@@ -17,7 +17,7 @@ export class AppComponent  implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
   ) 
   {
     this.initializeApp();
@@ -77,6 +77,6 @@ export class AppComponent  implements OnInit {
      // if(this.auth.checkToken()){
      //    this.auth.authenticationState.next(true);
      //  }
-  }
+}
   
 }

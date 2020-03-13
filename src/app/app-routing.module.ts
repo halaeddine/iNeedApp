@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { PreloadAllModules, RouterModule, Routes,PreloadingStrategy,Route } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -42,10 +42,22 @@ const routes: Routes = [
 
 ];
 
+export class SimpleLoadingStrategy implements PreloadingStrategy {
+  preload(route: Route, load: Function): Observable<any> {
+    if (route.data && route.data.preload) {
+      return load();
+    }
+    return of(null);
+  }
+}
+
 @NgModule({
+  providers: [SimpleLoadingStrategy],
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+

@@ -12,7 +12,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class BusinessesPage implements OnInit {
 
-businesses:any;
+// businesses:any;
 _get:any;
   constructor(public navCtrl: NavController,private route: ActivatedRoute,private auth:AuthenticationService) { 
   	// this.businesses = [{

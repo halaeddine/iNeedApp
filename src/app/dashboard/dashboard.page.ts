@@ -5,6 +5,7 @@ import { NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,28 +17,30 @@ export class DashboardPage implements OnInit {
   public searchTerm: string = "";
   public categories:any = [];
   public cats:any = [];
+  public id:any;
   // this.loggedIn:any;
 
   constructor(private imagePicker: ImagePicker,
     private router: Router ,
     public navCtrl: NavController,
-    private auth: AuthenticationService) {
-    this.categories = [
-  {
-    'catIcon':'././assets/icon/favicon.png',
-    'catId':1,
-    'catNameEn':'Barber Shop / حلاق'
-  },
-  {
-    'catIcon':'././assets/icon/favicon.png',
-    'catId':2,
-    'catNameEn':'hussein / حداد'
-  },
-  {
-    'catIcon':'././assets/icon/favicon.png',
-    'catId':3,
-    'catNameEn':'bilal / حلاق'
-  }];
+    private auth: AuthenticationService,
+    private storage: Storage) {
+  //   this.categories = [
+  // {
+  //   'catIcon':'././assets/icon/favicon.png',
+  //   'catId':1,
+  //   'catNameEn':'Barber Shop / حلاق'
+  // },
+  // {
+  //   'catIcon':'././assets/icon/favicon.png',
+  //   'catId':2,
+  //   'catNameEn':'hussein / حداد'
+  // },
+  // {
+  //   'catIcon':'././assets/icon/favicon.png',
+  //   'catId':3,
+  //   'catNameEn':'bilal / حلاق'
+  // }];
 
 }
    gotoBusinessesPage(id) {
@@ -52,8 +55,8 @@ let navigationExtras: NavigationExtras = {
   }
 
   ngOnInit() {
+    this.auth.getAllCategories();
     this.setFilteredItems();
-     this.auth.getAllCategories();
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
