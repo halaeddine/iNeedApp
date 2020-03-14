@@ -14,7 +14,7 @@
   <ion-card class="welcome-card">
     <ion-card-header>
 
-   <!-- Category: {{details.businessCat.catNameEn}} / {{details.businessCat.catNameAr}} -->
+   Category: {{catEn}} / {{catAr}}
  </ion-card-header>
  </ion-card>
  <ion-slides class="slides">
@@ -28,29 +28,25 @@
 
   <ion-row>
    <ion-col>
+
     
 <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-title> {{details.businessName}}</ion-card-title>
-      <ion-card-subtitle>ID:{{_get}}</ion-card-subtitle>
-      <ion-card-subtitle>Mobile: {{details.businessPhoneNumber}}</ion-card-subtitle>
-      <ion-card-subtitle>View(S): {{details.businessViews}}</ion-card-subtitle>
+      <ion-card-title> {{name}}</ion-card-title>
+      <!-- <ion-card-subtitle>ID:{{_get}}</ion-card-subtitle> -->
+      <ion-card-subtitle>Mobile: {{phoneNumber}}</ion-card-subtitle>
+      <ion-card-subtitle>View(S): {{views}}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 </ion-col>
 <ion-col>
 <ion-card class="welcome-card">
     <ion-card-content>
-     <!--
-     <ion-button color="primary" (click)="test()">Primary</ion-button> --><!-- 
-     <ion-button expand="block" routerLink="/login" routerDirection="root">Login</ion-button> -->
-     <!-- <p>{{data}}</p>
-     -->
      <p>
        Description:
       </p>
       <p>
-       <ion-card-subtitle>{{details.businessDesc}}</ion-card-subtitle>
+       <ion-card-subtitle>{{desc}}</ion-card-subtitle>
       </p>
     </ion-card-content>
   </ion-card>

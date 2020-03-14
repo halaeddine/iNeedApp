@@ -27,6 +27,7 @@ catId:any;
         this.getBusinessesWithCatId(this.catId);
       }
     });
+    // this.businesses = [{"businessId":1,"userId":"1","catId":"1","businessName":"Hussein Barber","businessPhoneNumber":"70785760","businessDesc":"Head & Beard","businessLat":"33.3","businessLng":"34.5","businessViews":"1","category":{"catId":1,"catNameEn":"Barber","catNameAr":"\u062d\u0644\u0627\u0642","catIcon":"player104.png"}}];
   }
 
   ngOnInit() {}
@@ -44,22 +45,12 @@ getBusinessesWithCatId(id){
 }
 goToBusinessDetails(id){
 
-  let navigationExtras: NavigationExtras = {
-    queryParams: {
-        id: id
+  this.businesses.forEach((val,key)=>{
+    if(val.businessId == id){
+      this.storage.set('businessDetailsSelected', JSON.stringify(val));
     }
-};
-// for(var i=0; i<=this.auth.businesses; i++){
-//   if(this.auth.businesses[i].businessId == id){
-//     this.storage.set('businessDetailsSelected', this.auth.businesses[i]).then(()=>{
-//       this.storage.get('businessDetailsSelected').then(val=>{
-//        b = val;
-//         console.log(val);
-//       });
-//     });
-//   }
-// }
-    this.router.navigate(['businessdetails'],navigationExtras);
+  })
+this.router.navigate(['businessdetails']);
 }
 
 
