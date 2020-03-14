@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import {NavController} from '@ionic/angular';
-import { NavigationExtras } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -21,62 +19,43 @@ export class DashboardPage implements OnInit {
   // this.loggedIn:any;
 
   constructor(private imagePicker: ImagePicker,
-    private router: Router ,
-    public navCtrl: NavController,
+    private router: Router,
     private auth: AuthenticationService,
     private storage: Storage) {
-
-  //   this.categories = [
-  // {
-  //   'catIcon':'././assets/icon/favicon.png',
-  //   'catId':1,
-  //   'catNameEn':'Barber Shop / حلاق'
-  // },
-  // {
-  //   'catIcon':'././assets/icon/favicon.png',
-  //   'catId':2,
-  //   'catNameEn':'hussein / حداد'
-  // },
-  // {
-  //   'catIcon':'././assets/icon/favicon.png',
-  //   'catId':3,
-  //   'catNameEn':'bilal / حلاق'
-  // }];
+    this.categories = [{"catId":1,"catNameEn":"Barber","catNameAr":"\u062d\u0644\u0627\u0642","catIcon":"player104.png"},{"catId":2,"catNameEn":"Carpenter","catNameAr":"\u0646\u062c\u0627\u0631","catIcon":"player104.png"},{"catId":3,"catNameEn":"Iron Smith","catNameAr":"\u062d\u062f\u0627\u062f","catIcon":"player104.png"},{"catId":4,"catNameEn":"Painter","catNameAr":"\u062f\u0647\u0627\u0646","catIcon":"player104.png"}];
 
 }
-   gotoBusinessesPage(id) {
-let navigationExtras: NavigationExtras = {
-    queryParams: {
-        id: id
-    }
-};
-
-    this.navCtrl.navigateForward(['businesses/'+ id],navigationExtras);
-
+gotoBusinessesPage(id) {
+          let navigationExtras: NavigationExtras = {
+              data: {
+                  id: id
+              }
+          };
+          this.router.navigate(['businesses'],navigationExtras);
   }
 
   ngOnInit() {
 
   
-     this.auth.getAllCategories().then(()=>{
-         this.setFilteredItems();
-     });
+     // this.auth.getAllCategories().then(()=>{
+     //     this.setFilteredItems();
+     // });
 
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
 
   
- setFilteredItems() {
+ // setFilteredItems() {
 
-   this.cats = this.auth.categories;
-    this.cats = this.filterItems(this.searchTerm);
- }
+ //   this.cats = this.auth.categories;
+ //    this.cats = this.filterItems(this.searchTerm);
+ // }
 
- filterItems(searchTerm) {
-   console.log(this.searchTerm);
-    return this.cats.filter(item => {
-      return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    });
-  }
+ // filterItems(searchTerm) {
+ //   console.log(this.searchTerm);
+ //    return this.cats.filter(item => {
+ //      return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+ //    });
+ //  }
 }

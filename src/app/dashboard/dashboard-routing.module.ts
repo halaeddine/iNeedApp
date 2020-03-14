@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardPage
+  },
+  {
+    path: 'businesses',
+    loadChildren: () => import('./../businesses/businesses.module').then( m => m.BusinessesPageModule)
   }
 ];
 

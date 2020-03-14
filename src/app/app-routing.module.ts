@@ -28,7 +28,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'businesses/:id',
+    path: 'businesses',
     loadChildren: () => import('./businesses/businesses.module').then( m => m.BusinessesPageModule)
   },
   {
@@ -54,7 +54,7 @@ export class SimpleLoadingStrategy implements PreloadingStrategy {
 @NgModule({
   providers: [SimpleLoadingStrategy],
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules,enableTracing: false })
   ],
   exports: [RouterModule]
 })

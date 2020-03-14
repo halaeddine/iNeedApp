@@ -7,6 +7,7 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { IonicStorageModule } from '@ionic/storage';
 import { HTTP } from '@ionic-native/http/ngx';
+
 const TOKEN_KEY = 'auth-token';
 const userData = 'userData';
 
@@ -90,11 +91,14 @@ getBusinessesWithCatId(id){
 
  getUserData(id){
      return new Promise((resolve, reject)=>{
-        this.http.get('http://www.brands-tech.com/api/getuserdata',{userId:id},{})
+        this.http.post('http://www.brands-tech.com/api/getuserdata',{userId:id},{})
         .then(data => {
+          // return data;
           this.userdata = JSON.parse(data.data);
+          alert(JSON.stringify(this.userdata));
+          resolve(true)
           }).catch(err=>{
-          reject(err);
+          reject(false);
         });
       });
  }
@@ -108,6 +112,7 @@ uploadProfileImage(data){
           alert(JSON.stringify(data));
           this.Toast("Profile Image Updated Successfully");
           this.updatedImage = JSON.parse(data.data).user.image;
+          resolve(data);
         }).catch(err=>{
           reject(err);
         });
