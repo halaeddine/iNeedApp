@@ -55,7 +55,7 @@ export class AuthenticationService {
        return new Promise((resolve, reject)=>{
         this.http.get('http://www.brands-tech.com/api/getbusinessdetails',id,{})
         .then(data => {
-          this.businessdetails = data;
+          this.businessdetails = JSON.stringify(data.data);
          
         }).catch(err=>{
           reject(err);
@@ -79,6 +79,9 @@ getBusinessesWithCatId(id){
         this.http.get('http://www.brands-tech.com/api/getbusinesseswithsamecategory',{catId:id},{})
         .then(data => {
           this.businesses = JSON.parse(data.data);
+          
+  //          this.storage.get('busin').then(val=>{
+  // })
         }).catch(err=>{
           reject(err);
         });

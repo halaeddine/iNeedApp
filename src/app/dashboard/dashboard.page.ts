@@ -22,22 +22,22 @@ export class DashboardPage implements OnInit {
     private router: Router ,
     public navCtrl: NavController,
     private auth: AuthenticationService) {
-    this.categories = [
-  {
-    'catIcon':'././assets/icon/favicon.png',
-    'catId':1,
-    'catNameEn':'Barber Shop / حلاق'
-  },
-  {
-    'catIcon':'././assets/icon/favicon.png',
-    'catId':2,
-    'catNameEn':'hussein / حداد'
-  },
-  {
-    'catIcon':'././assets/icon/favicon.png',
-    'catId':3,
-    'catNameEn':'bilal / حلاق'
-  }];
+  //   this.categories = [
+  // {
+  //   'catIcon':'././assets/icon/favicon.png',
+  //   'catId':1,
+  //   'catNameEn':'Barber Shop / حلاق'
+  // },
+  // {
+  //   'catIcon':'././assets/icon/favicon.png',
+  //   'catId':2,
+  //   'catNameEn':'hussein / حداد'
+  // },
+  // {
+  //   'catIcon':'././assets/icon/favicon.png',
+  //   'catId':3,
+  //   'catNameEn':'bilal / حلاق'
+  // }];
 
 }
    gotoBusinessesPage(id) {
@@ -52,8 +52,10 @@ let navigationExtras: NavigationExtras = {
   }
 
   ngOnInit() {
-    this.setFilteredItems();
-     this.auth.getAllCategories();
+  
+     this.auth.getAllCategories().then(()=>{
+         this.setFilteredItems();
+     });
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
@@ -61,8 +63,8 @@ let navigationExtras: NavigationExtras = {
   
  setFilteredItems() {
 
-   this.cats = this.categories;
-    // this.cats = this.filterItems(this.searchTerm);
+   this.cats = this.auth.categories;
+    this.cats = this.filterItems(this.searchTerm);
  }
 
  filterItems(searchTerm) {
@@ -71,16 +73,4 @@ let navigationExtras: NavigationExtras = {
       return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
   }
-
-// check(){
-// 	if(this.auth.isAuthenticated()){
-// 		alert('in');
-//     return true;
-// 	}
-//   else{
-//     alert("out")
-//     return false;
-//   }
-// }
-
 }

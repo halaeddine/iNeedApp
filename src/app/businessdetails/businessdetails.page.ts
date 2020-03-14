@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-
+import { Storage } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 @Component({
   selector: 'app-businessdetails',
   templateUrl: './businessdetails.page.html',
@@ -13,27 +14,35 @@ export class BusinessdetailsPage implements OnInit {
  public _get:any;
  private details:any;
 
-  constructor(public navCtrl: NavController,private route: ActivatedRoute,private auth: AuthenticationService) {
-  	this.details = {
-  		'businessName':'Barber Hussein',
-  		'businessPhoneNumber':'70785760',
-  		'businessDesc' : 'New offers on the hair cut',
-  		'businessViews': '30',
-  		'businessCat': {
-  			'catNameEn': 'Barber',
-  			'catNameAr': 'حلاق'
-  		}
-  	};
-
+  constructor(public navCtrl: NavController,
+    private route: ActivatedRoute,
+    private auth: AuthenticationService,
+    private storage:NativeStorage) {
+  	// this.details = {
+  	// 	'businessName':'Barber Hussein',
+  	// 	'businessPhoneNumber':'70785760',
+  	// 	'businessDesc' : 'New offers on the hair cut',
+  	// 	'businessViews': '30',
+  	// 	'businessCat': {
+  	// 		'catNameEn': 'Barber',
+  	// 		'catNameAr': 'حلاق'
+  	// 	}
+  	// };
+this.storage.getItem('businessDetailsSelected').then(val=>{
+        this.details = val;
+        console.log(val);
+      });
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-     this._get = params["id"];
-      console.log(this._get);
-    });
+    // this.route.params.subscribe(params => {
+    //  this._get = params["id"];
+    //   console.log(this._get);
+      
+      // this.auth.getBusinessDetails(this._get);
+    // });
   }
-getBusinessDetails(id){
+// getBusinessDetails(id){
 // this.auth.getBusinessDetails(id);
-}
+// }
 }

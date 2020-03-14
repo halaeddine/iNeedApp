@@ -14,6 +14,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
   ],
   providers: [
     StatusBar,
+    NativeStorage,
     SplashScreen,
     ImagePicker,
     PhotoViewer,

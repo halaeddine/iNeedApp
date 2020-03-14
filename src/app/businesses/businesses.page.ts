@@ -3,8 +3,8 @@ import {NavController} from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-
-
+import { Storage } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 @Component({
   selector: 'app-businesses',
   templateUrl: './businesses.page.html',
@@ -14,7 +14,10 @@ export class BusinessesPage implements OnInit {
 
 businesses:any;
 _get:any;
-  constructor(public navCtrl: NavController,private route: ActivatedRoute,private auth:AuthenticationService) { 
+  constructor(public navCtrl: NavController,
+    private route: ActivatedRoute,
+    private auth:AuthenticationService,
+    private storage:Storage) { 
   	// this.businesses = [{
   	// 	'id':1,
   	// 	'businessName':'Hussein Barber',
@@ -44,7 +47,17 @@ goToBusinessDetails(id){
         id: id
     }
 };
-    this.navCtrl.navigateForward(['businessdetails/'+ id],navigationExtras);
+for(var i=0; i<=this.auth.businesses; i++){
+  if(this.auth.businesses[i].businessId == id){
+    this.storage.set('businessDetailsSelected', this.auth.businesses[i]).then(()=>{
+      this.storage.get('businessDetailsSelected').then(val=>{
+        // this.details = val;
+        console.log(val);
+      });
+    });
+  }
+}
+    // this.navCtrl.navigateForward(['businessdetails/'+ id],navigationExtras);
 }
 
 

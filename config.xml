@@ -108,6 +108,6 @@
     </plugin>
     <plugin name="com-sarriaroman-photoviewer" spec="^1.2.4" />
     <plugin name="cordova-sqlite-storage" spec="^4.0.0" />
-    <allow-navigation href="http://localhost:8101" sessionid="d7746d74" />
+    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
     <engine name="android" spec="^7.1.4" />
 </widget>
