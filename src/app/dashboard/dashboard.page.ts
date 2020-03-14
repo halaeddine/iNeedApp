@@ -5,6 +5,7 @@ import { NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +17,15 @@ export class DashboardPage implements OnInit {
   public searchTerm: string = "";
   public categories:any = [];
   public cats:any = [];
+  public id:any;
   // this.loggedIn:any;
 
   constructor(private imagePicker: ImagePicker,
     private router: Router ,
     public navCtrl: NavController,
-    private auth: AuthenticationService) {
+    private auth: AuthenticationService,
+    private storage: Storage) {
+
   //   this.categories = [
   // {
   //   'catIcon':'././assets/icon/favicon.png',
@@ -52,10 +56,12 @@ let navigationExtras: NavigationExtras = {
   }
 
   ngOnInit() {
+
   
      this.auth.getAllCategories().then(()=>{
          this.setFilteredItems();
      });
+
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 

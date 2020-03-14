@@ -5,7 +5,7 @@
       	 <ion-menu-button></ion-menu-button>
       </ion-button>
     </ion-buttons>
-    <ion-title>iNeedApp</ion-title>
+    <ion-title>iNeedApp {{id}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
@@ -18,13 +18,15 @@
     class="searchbar"
   ></ion-searchbar>
 
-<ion-list>
+
+<ion-list class="ion-padding">
+
   <ion-item *ngFor="let cat of auth.categories" lines="full" (click)="gotoBusinessesPage([cat.catId])">
           <ion-avatar slot="start">
             <img src="././assets/icon/favicon.png">
           </ion-avatar>
           <ion-label>
-            <h2> {{cat.catNameEn}} - {{cat.catNameEn}}<span class="arrow">></span></h2>
+            <h2> {{cat.catNameEn}} - {{cat.catNameAr}}<span class="arrow">></span></h2>
           </ion-label>
         </ion-item>
 </ion-list>

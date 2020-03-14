@@ -1,5 +1,6 @@
 import { AuthenticationService } from '../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
  
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginPage implements OnInit {
  
  data:any = {};
 loader:any = false;
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private storage: Storage) { }
  
   ngOnInit() {
    

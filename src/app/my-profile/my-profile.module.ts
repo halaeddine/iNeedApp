@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 import { MyProfilePageRoutingModule } from './my-profile-routing.module';
 
 import { MyProfilePage } from './my-profile.page';
@@ -13,7 +15,9 @@ import { MyProfilePage } from './my-profile.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MyProfilePageRoutingModule
+    MyProfilePageRoutingModule,
+    IonicStorageModule,
+    
   ],
   declarations: [MyProfilePage]
 })
