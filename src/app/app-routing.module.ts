@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   
   {
-   path: 'businessdetails/:id',
+   path: 'businessdetails',
     loadChildren: () => import('./businessdetails/businessdetails.module').then( m => m.BusinessdetailsPageModule)
   },
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+// import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationExtras } from '@angular/router';
-import { Storage } from '@ionic/storage';
-
+// import { Storage } from '@ionic/storage';
+import { HTTP } from '@ionic-native/http/ngx';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -13,23 +13,24 @@ import { Storage } from '@ionic/storage';
 export class DashboardPage implements OnInit {
 
   public searchTerm: string = "";
-  public categories:any = [];
+  public categories:any;
   public cats:any = [];
   public id:any;
+  
   // this.loggedIn:any;
 
-  constructor(private imagePicker: ImagePicker,
+  constructor(
     private router: Router,
-    private auth: AuthenticationService,
-    private storage: Storage) {
-    this.categories = [{"catId":1,"catNameEn":"Barber","catNameAr":"\u062d\u0644\u0627\u0642","catIcon":"player104.png"},{"catId":2,"catNameEn":"Carpenter","catNameAr":"\u0646\u062c\u0627\u0631","catIcon":"player104.png"},{"catId":3,"catNameEn":"Iron Smith","catNameAr":"\u062d\u062f\u0627\u062f","catIcon":"player104.png"},{"catId":4,"catNameEn":"Painter","catNameAr":"\u062f\u0647\u0627\u0646","catIcon":"player104.png"}];
-
+    private http: HTTP,
+    private auth: AuthenticationService) {
+    this.getAllCategories();
 }
 gotoBusinessesPage(id) {
+var id = id;
           let navigationExtras: NavigationExtras = {
-              data: {
+              queryParams:{
                   id: id
-              }
+             }
           };
           this.router.navigate(['businesses'],navigationExtras);
   }
@@ -43,7 +44,17 @@ gotoBusinessesPage(id) {
 
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
-
+getAllCategories(){
+       return new Promise((resolve, reject)=>{
+        this.http.get('http://www.brands-tech.com/api/getallcategories',{},{})
+        .then(data => {
+          this.categories = JSON.parse(data.data);
+         resolve(true);
+        }).catch(err=>{
+          reject(err);
+        });
+      });
+ }
 
   
  // setFilteredItems() {
