@@ -96,14 +96,14 @@
       "cordova-plugin-advanced-http": {
         "OKHTTP_VERSION": "3.10.0"
       },
-      "cordova-plugin-telerik-imagepicker": {},
       "com-sarriaroman-photoviewer": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-nativestorage": {},
       "mx.ferreyra.callnumber": {},
       "cordova-sms-plugin": {},
       "cordova-plugin-googlemaps": {},
-      "cordova-plugin-nativegeocoder": {}
+      "cordova-plugin-nativegeocoder": {},
+      "cordova-plugin-telerik-imagepicker": {}
     },
     "platforms": [
       "android",

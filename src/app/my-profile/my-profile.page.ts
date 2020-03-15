@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Router} from '@angular/router';
 import { ToastController } from '@ionic/angular';
-
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-my-profile',
@@ -17,19 +17,23 @@ export class MyProfilePage implements OnInit {
 images:any;
 public userid:string = "";
 public userdata:any = [];
-proImage:any = '././assets/player104.png';
+proImage:any;
 updatedImage:any;
 numBusinesses:any;
+loading:any;
   constructor(private imagePicker: ImagePicker,
    private photoViewer: PhotoViewer,
    public storage:Storage,
    private http: HTTP,
    private router: Router,
-   public toastController: ToastController
+   public toastController: ToastController,
+   public loadingController: LoadingController
    ) {
+     this.userdata = {};
     this.storage.get('userData').then(val=>{
     this.userid = JSON.stringify(val);
     this.getUserData(this.userid);
+    // this.presentLoading();
    });
 
      // this.platform.ready().then(() => {
@@ -43,7 +47,7 @@ numBusinesses:any;
   }
 
 showImage(){
-  this.photoViewer.show("http://www.brands-tech.com/public/images/player104.png");
+  this.photoViewer.show(this.proImage);
 }
 
 
@@ -66,7 +70,7 @@ SelectImage(){
       }, (err) => {
         alert(err);
        });
-}
+} 
 
 
 uploadProfileImage(data){
@@ -87,14 +91,18 @@ uploadProfileImage(data){
 
 
  getUserData(id){
+   this.presentLoading();
      return new Promise((resolve, reject)=>{
         this.http.get('http://www.brands-tech.com/api/getuserdata',{userId:id},{})
         .then(data => {
           this.userdata = JSON.parse(data.data);
           this.numBusinesses = this.userdata.businesses.length;
+          this.proImage = this.userdata.image;
+          this.dismissLoading();
            resolve(true);
           }).catch(err=>{
           reject(err);
+          this.dismissLoading();
         });
       });
  }
@@ -105,6 +113,27 @@ uploadProfileImage(data){
       duration: 4000
     });
     toast.present();
+  }
+
+
+  presentLoading() {
+ this.loading =  this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    }).then(res=>{
+      res.present();
+      const { role, data } = res.onDidDismiss();
+    });
+    // this.loading.present();
+
+    
+    // console.log('Loading dismissed!');
+  }
+   dismissLoading(){
+       setTimeout(()=>{
+              this.loadingController.dismiss();
+          },1000)
+  
   }
 
 }

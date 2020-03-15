@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-// import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationExtras } from '@angular/router';
-// import { Storage } from '@ionic/storage';
+import { LoadingController } from '@ionic/angular';
 import { HTTP } from '@ionic-native/http/ngx';
 @Component({
   selector: 'app-dashboard',
@@ -16,13 +15,15 @@ export class DashboardPage implements OnInit {
   public categories:any;
   public cats:any = [];
   public id:any;
-  
+  loading:any;
   // this.loggedIn:any;
 
   constructor(
     private router: Router,
     private http: HTTP,
-    private auth: AuthenticationService) {
+    private auth: AuthenticationService,
+    public loadingController: LoadingController) {
+    this.categories = [];
     this.getAllCategories();
 }
 gotoBusinessesPage(id) {
@@ -45,17 +46,34 @@ var id = id;
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 getAllCategories(){
+  this.presentLoading();
        return new Promise((resolve, reject)=>{
         this.http.get('http://www.brands-tech.com/api/getallcategories',{},{})
         .then(data => {
           this.categories = JSON.parse(data.data);
+          this.dismissLoading();
          resolve(true);
         }).catch(err=>{
           reject(err);
+          this.dismissLoading();
         });
       });
  }
 
+ presentLoading() {
+ this.loading =  this.loadingController.create({
+      message: 'Please wait...',
+      // duration: 2000
+    }).then(res=>{
+      res.present();
+      const { role, data } = res.onDidDismiss();
+    });
+  }
+  dismissLoading(){
+       setTimeout(()=>{
+              this.loadingController.dismiss();
+          },1000)
+  }
   
  // setFilteredItems() {
 
