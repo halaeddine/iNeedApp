@@ -17,7 +17,6 @@ import { MyProfilePage } from './my-profile.page';
     IonicModule,
     MyProfilePageRoutingModule,
     IonicStorageModule,
-    
   ],
   declarations: [MyProfilePage]
 })

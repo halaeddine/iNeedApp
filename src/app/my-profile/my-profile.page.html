@@ -22,14 +22,10 @@
 </div>
 <div class="card-body ion-padding">
   <div class="user-meta ion-text-center">
-    {{auth.userdata}}
-    <!-- <h3 class="Username">{{auth.userdata.userId}}</h3> -->
-    <!-- <h3 class="Username">{{auth.userdata.username}}</h3> -->
-    <!-- <h3 class="Username">{{auth.userdata.fname}}</h3> -->
-    <h5 class="country">Beirut</h5>
-    <h6 >Businesses:
-    </h6>
-    <ion-button>2</ion-button>
+    <h3 class="Username">{{userdata.username}}</h3>
+    <h3 class="Username">{{userdata.fname}} {{userdata.lname}}</h3>
+    <h6 >Businesses:</h6>
+    <ion-button style="width: 100px" [routerDirection]="root" [routerLink]="['/my-businesses']" >2</ion-button>
   </div>
 
  
