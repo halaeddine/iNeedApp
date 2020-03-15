@@ -27,7 +27,7 @@ catId:any;
         this.getBusinessesWithCatId(this.catId);
       }
     });
-    // this.businesses = [{"businessId":1,"userId":"1","catId":"1","businessName":"Hussein Barber","businessPhoneNumber":"70785760","businessDesc":"Head & Beard","businessLat":"33.3","businessLng":"34.5","businessViews":"1","category":{"catId":1,"catNameEn":"Barber","catNameAr":"\u062d\u0644\u0627\u0642","catIcon":"player104.png"}}];
+    this.businesses = [{"businessId":1,"userId":"1","catId":"1","businessName":"Hussein Barber","businessPhoneNumber":"70785760","businessDesc":"Head & Beard","businessLat":"33.3","businessLng":"34.5","businessViews":"1","category":{"catId":1,"catNameEn":"Barber","catNameAr":"\u062d\u0644\u0627\u0642","catIcon":"player104.png"},"images":[{"imageId":1,"businessId":"1","imagePath":"http:\/\/www.brands-tech.com\/public\/images\/player104.png"},{"imageId":2,"businessId":"1","imagePath":"http:\/\/www.brands-tech.com\/public\/images\/player104.png"}]}];
   }
 
   ngOnInit() {}

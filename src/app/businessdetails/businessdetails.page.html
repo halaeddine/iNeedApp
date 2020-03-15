@@ -18,11 +18,8 @@
  </ion-card-header>
  </ion-card>
  <ion-slides class="slides">
-        <ion-slide>
-         <img src="/assets/shapes.svg" alt=""/>
-        </ion-slide>
-        <ion-slide>
-         <img src="/assets/player104.png" alt=""/>
+        <ion-slide *ngFor="let image of images">
+         <img [src]="image.imagePath" alt=""/>
         </ion-slide>
       </ion-slides>
 
@@ -52,5 +49,20 @@
   </ion-card>
 </ion-col>
 </ion-row>
+<ion-tabs>
+  <div id="map"></div>
+  <ion-tab-bar>
+    <ion-tab-button (click)="call()">
+      <ion-icon name="call"></ion-icon>
+      <ion-label>Call</ion-label>
+    </ion-tab-button>
 
+    <ion-tab-button (click)="sms()">
+      <ion-icon name="mail"></ion-icon>
+      <ion-label>SMS</ion-label>
+    </ion-tab-button>
+
+    
+  </ion-tab-bar>
+</ion-tabs>
 </ion-content>
