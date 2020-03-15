@@ -3,7 +3,7 @@
     <name>iNeedApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -108,7 +108,7 @@
     </plugin>
     <plugin name="com-sarriaroman-photoviewer" spec="^1.2.4" />
     <plugin name="cordova-sqlite-storage" spec="^4.0.0" />
-    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
-    <allow-navigation href="http://localhost:8100" sessionid="1ac83953" />
+    <allow-navigation href="http://localhost:8101" sessionid="d7746d74" />
     <engine name="android" spec="^7.1.4" />
+    <allow-navigation href="http://localhost:8100" sessionid="82406d99" />
 </widget>
