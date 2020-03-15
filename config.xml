@@ -115,7 +115,7 @@
     <plugin name="cordova-sms-plugin" spec="^1.0.0" />
     <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps" />
     <plugin name="cordova-plugin-nativegeocoder" spec="^3.2.2" />
-    <allow-navigation href="http://localhost:8101" sessionid="8b6ba12f" />
+    <allow-navigation href="http://localhost:8101" sessionid="a401aa19" />
     <engine name="android" spec="^7.1.4" />
-    <engine name="browser" spec="5.0.4" />
+    <engine name="browser" spec="6.0.0" />
 </widget>

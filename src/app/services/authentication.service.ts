@@ -83,19 +83,7 @@ export class AuthenticationService {
 
 
 
-uploadProfileImage(data){
-  return new Promise((resolve, reject)=>{
-        this.http.post('http://www.brands-tech.com/api/uploadprofileimage',{'image':data,'userId':this.userId},{})
-        .then(data => {
-          alert(JSON.stringify(data));
-          this.Toast("Profile Image Updated Successfully");
-          this.updatedImage = JSON.parse(data.data).user.image;
-          resolve(data);
-        }).catch(err=>{
-          reject(err);
-        });
-      });
-}
+
 
  login(_data) {
      return new Promise((resolve, reject)=>{
@@ -153,4 +141,5 @@ uploadProfileImage(data){
     });
     toast.present();
   }
+  
 }
