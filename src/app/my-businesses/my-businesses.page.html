@@ -12,7 +12,7 @@
 <ion-content [fullscreen]="true">
  <div id="container">
   <ion-list>
-    <ion-item *ngFor="let b of businesses" lines="full" (click)="goToMyBusinessDetails(b.businessId)">
+    <ion-item *ngFor="let b of businesses" lines="full" (click)="goToBusinessDetails([b.businessId])">
             <ion-avatar slot="start">
               <img src="././assets/icon/favicon.png">
             </ion-avatar>
