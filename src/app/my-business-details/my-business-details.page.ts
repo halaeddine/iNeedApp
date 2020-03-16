@@ -84,7 +84,7 @@ applyEditBusiness(){
           reject(err);
         });
       });
-}
+} 
 cancelEditBusiness(){
 this.edit = false;
 }
