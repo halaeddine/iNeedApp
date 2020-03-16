@@ -33,7 +33,6 @@ loading:any;
     this.storage.get('userData').then(val=>{
     this.userid = JSON.stringify(val);
     this.getUserData(this.userid);
-    // this.presentLoading();
    });
 
      // this.platform.ready().then(() => {
@@ -122,7 +121,7 @@ uploadProfileImage(data){
       duration: 2000
     }).then(res=>{
       res.present();
-      const { role, data } = res.onDidDismiss();
+      res.onDidDismiss();
     });
     // this.loading.present();
 

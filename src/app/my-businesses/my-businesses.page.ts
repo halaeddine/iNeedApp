@@ -76,7 +76,7 @@ getBussinesses(id){
       // duration: 2000
     }).then(res=>{
       res.present();
-      const { role, data } = res.onDidDismiss();
+      res.onDidDismiss();
     });
   }
   dismissLoading(){
