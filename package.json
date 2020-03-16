@@ -34,7 +34,7 @@
     "@ionic/storage": "^2.2.0",
     "call-number": "^1.0.1",
     "com-sarriaroman-photoviewer": "^1.2.4",
-    "cordova-android": "^7.1.4",
+    "cordova-android": "^8.1.0",
     "cordova-browser": "6.0.0",
     "cordova-plugin-advanced-http": "^2.4.1",
     "cordova-plugin-device": "^2.0.3",
@@ -106,8 +106,8 @@
       "cordova-plugin-telerik-imagepicker": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }
