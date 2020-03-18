@@ -5,7 +5,7 @@
       	 <ion-menu-button></ion-menu-button>
       </ion-button>
     </ion-buttons>
-    <ion-title>iNeedApp</ion-title>
+    <ion-title><img src="././assets/header.png" width="100"></ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
@@ -21,7 +21,7 @@
 
 <ion-list class="ion-padding">
 
-  <ion-item *ngFor="let cat of categories" lines="full" (click)="gotoBusinessesPage([cat.catId])">
+  <ion-item *ngFor="let cat of cats" lines="full" (click)="gotoBusinessesPage([cat.catId])">
           <ion-avatar slot="start">
             <img src="././assets/icon/favicon.png">
           </ion-avatar>
@@ -31,4 +31,9 @@
         </ion-item>
 </ion-list>
 </div>
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="goToAddBusiness()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

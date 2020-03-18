@@ -34,6 +34,7 @@ b:any = {};
       private router: Router) { 
     this.getCategories();
      this.storage.get('myBusinessDetailsSelected').then(val=>{
+
        this.details = JSON.parse(val);
        this.name = this.details.businessName;
        this.phoneNumber = this.details.businessPhoneNumber;

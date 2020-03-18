@@ -33,7 +33,6 @@ export class AppComponent  implements OnInit {
      this.storage.get("userData").then(user=>{
       this.username = JSON.parse(user).username;
       this.image = JSON.parse(user).image;
-       console.log(JSON.parse(user));
      });
      this.auth.authenticationState.subscribe(state => {
        this.loggedin = true;

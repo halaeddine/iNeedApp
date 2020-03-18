@@ -27,11 +27,10 @@ export class DashboardPage implements OnInit {
     // private geolocation: Geolocation,
     public loadingController: LoadingController) {
     this.categories = [];
-    this.getAllCategories();
+    this.getAllCategories().then(()=>{
+         this.setFilteredItems();
+     });
 
-   setTimeout(()=>{
-console.log(this.location.lat);
-   },1000);
 }
 
 
@@ -48,9 +47,7 @@ var id = id;
   ngOnInit() {
 
   
-     // this.auth.getAllCategories().then(()=>{
-     //     this.setFilteredItems();
-     // });
+  
 
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
@@ -84,16 +81,18 @@ getAllCategories(){
           },1000)
   }
   
- // setFilteredItems() {
 
- //   this.cats = this.auth.categories;
- //    this.cats = this.filterItems(this.searchTerm);
- // }
+ goToAddBusiness(){
+   this.router.navigate(['add-business']);
+ }
+ setFilteredItems() {
+   this.cats = this.categories;
+    this.cats = this.filterItems(this.searchTerm);
+ }
 
- // filterItems(searchTerm) {
- //   console.log(this.searchTerm);
- //    return this.cats.filter(item => {
- //      return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
- //    });
- //  }
+ filterItems(searchTerm) {
+    return this.cats.filter(item => {
+      return (item.catNameEn.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) || (item.catNameAr.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+    });
+  }
 }

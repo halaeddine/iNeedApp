@@ -41,6 +41,10 @@ const routes: Routes = [
   },  {
     path: 'my-business-details',
     loadChildren: () => import('./my-business-details/my-business-details.module').then( m => m.MyBusinessDetailsPageModule)
+  },
+  {
+    path: 'add-business',
+    loadChildren: () => import('./add-business/add-business.module').then( m => m.AddBusinessPageModule)
   }
 
 
