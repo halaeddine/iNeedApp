@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild,ElementRef,AfterViewInit } from '@angular/core';
 // import { Router, NavigationExtras } from '@angular/router';
 // import { ActivatedRoute } from '@angular/router';
-// import { AuthenticationService } from '../services/authentication.service';
+import { LocationService } from '../services/location.service';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
@@ -37,6 +37,7 @@ views:any;
 catEn:any;
 catAr:any;
 images:any;
+place:any;
   constructor(
     // private route: ActivatedRoute,
     // private router: Router,
@@ -44,6 +45,7 @@ images:any;
     private storage: Storage,
     private callnumber:CallNumber,
     private nativeGeocoder: NativeGeocoder,
+    private location: LocationService,
     // private smsnumber: SMS
     ) {
      this.storage.get('businessDetailsSelected').then(val=>{
@@ -57,24 +59,37 @@ images:any;
        this.images = this.details.images;
        console.log(this.details);
      });
-     // this.loadMap();
-     // this.geoCoder();
+   
+     
+     setTimeout(()=>{
+       console.log(this.location.lat);
+       console.log(this.location.lng);
+     },500);
+     
   }
-ngAfterViewInit(): void {
-    const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
-    });
+ngAfterViewInit(){
+    this.geoCoder(this.location.lat,this.location.lng);
   }
-geoCoder(){
-  let options: NativeGeocoderOptions = {
-    useLocale: true,
-    maxResults: 5
-  };
+geoCoder(lat,lng){
+      let options: NativeGeocoderOptions = {
+        useLocale: false,
+        maxResults: 5
+      };
+    this.nativeGeocoder.reverseGeocode(lat,lng, options)
+      .then((result: NativeGeocoderResult[]) =>{
+        this.place = this.locationFilter(result);
+      })
+      .catch((error: any) => console.log(error));
+}
 
-this.nativeGeocoder.reverseGeocode(33.8412852, 35.5145277, options)
-  .then((result: NativeGeocoderResult[]) => alert(JSON.stringify(result[0])))
-  .catch((error: any) => console.log(error));
+locationFilter(result){
+  var _locality;
+  result.forEach((val,key)=>{
+    if(val.locality !== 'Unnamed Road' && val.locality.length > 0){
+      _locality = val.locality;
+    }
+  })
+  return _locality;
 }
 
 call(){
@@ -87,49 +102,6 @@ sms(){
   // this.smsnumber.send(this.phoneNumber, 'Hello world!');
 }
 
-loadMap(){
-  // let map: GoogleMap = this.googleMaps.create(this.element.nativeElement);
-
-  //   map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
-  //     let coordinates: LatLng = new LatLng(33.6396965, -84.4304574);
-  //     let position = {
-  //       target: coordinates,
-  //       zoom: 17
-  //     };
-  //     map.animateCamera(position);
-  //     let markerOptions: MarkerOptions = {
-  //       position: coordinates,
-  //       icon: "assets/images/icons8-Marker-64.png",
-  //       title: 'Our first POI'
-  //     };
-  //     const marker = map.addMarker(markerOptions)
-  //       .then((marker: Marker) => {
-  //         marker.showInfoWindow();
-  //     });
-  //   })
-
-// this.map = GoogleMaps.create('map_canvas', {
-//       camera: {
-//         target: {
-//           lat: 43.0741704,
-//           lng: -89.3809802
-//         },
-//         zoom: 18,
-//         tilt: 30
-//       }
-//     });
- // this.map.getMyLocation().then((location: MyLocation) => {
- //      // this.loading.dismiss();
- //      console.log(JSON.stringify(location, null ,2));
-
- //      // Move the map camera to the location with animation
- //      this.map.animateCamera({
- //        target: location.latLng,
- //        zoom: 17,
- //        tilt: 30
- //      });
- //    });
-}
 
   ngOnInit() {}
 

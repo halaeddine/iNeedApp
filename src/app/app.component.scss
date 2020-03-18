@@ -1,0 +1,25 @@
+.card {
+    margin: 0 auto;
+
+    .header {
+        height: 150px;
+
+        .avatar {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            margin: 0 auto;
+
+            .img {
+                display: block;
+                border-radius: 50%;
+                position: absolute;
+                top: 0;
+                border: 1px solid #3880ff;
+                background-color: #fff;
+
+
+            }
+        }
+    }
+}

@@ -8,6 +8,15 @@
       </ion-header>
       <ion-content>
         <ion-list>
+           <div  class="card">
+              <div class="header">
+                <div class="avatar">
+                  <img class="img"  src="./assets/player104.png"/>
+                </div>
+              </div>
+            </div>
+        </ion-list>
+        <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item *ngIf="p.title != 'Logout'" [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>

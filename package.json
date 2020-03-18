@@ -68,6 +68,7 @@
     "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
     "@ionic/angular-toolkit": "^2.2.0",
+    "@ionic/app-scripts": "^3.2.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -105,11 +106,8 @@
       "cordova-plugin-googlemaps": {},
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-telerik-imagepicker": {},
-
       "cordova-plugin-geolocation": {},
-
-      "cordova-plugin-whitelist":{}
-
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "browser",
