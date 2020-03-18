@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
-import { Router, NavigationExtras } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { HTTP } from '@ionic-native/http/ngx';
-import { ToastController } from '@ionic/angular';
-import { LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-my-business-details',
   templateUrl: './my-business-details.page.html',
@@ -12,39 +7,11 @@ import { LoadingController } from '@ionic/angular';
 })
 export class MyBusinessDetailsPage implements OnInit {
 
-categories:any;
-loading:any;
-details:any;
-name:any;
-catEn:any;
-catAr:any;
-phoneNumber:any;
-views:any;
-desc:any;
-edit:boolean= false;
-data:any = {};
-b:any = {};
-  constructor(
-  	private route: ActivatedRoute,
-  	public storage:Storage,
-  	public toastController: ToastController,
-  	public loadingController: LoadingController,
-  	private http: HTTP,
-    	private router: Router) { 
-  	this.getCategories();
-  	 this.storage.get('myBusinessDetailsSelected').then(val=>{
-  	 	this.details = JSON.parse(val);
-  	 	this.name = this.details.businessName;
-  	 	this.phoneNumber = this.details.businessPhoneNumber;
-  	 	this.desc = this.details.businessDesc;
-  	 	this.views = this.details.businessViews;
-  	 	this.catEn = this.details.category.catNameEn;
-  	 	this.catAr = this.details.category.catNameAr;
-  	 });
-  }
+  constructor() { }
 
   ngOnInit() {
   }
+
 
 getCategories(){
 	return new Promise((resolve, reject)=>{

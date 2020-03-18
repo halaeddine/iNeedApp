@@ -87,7 +87,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
@@ -106,7 +105,11 @@
       "cordova-plugin-googlemaps": {},
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-telerik-imagepicker": {},
-      "cordova-plugin-geolocation": {}
+
+      "cordova-plugin-geolocation": {},
+
+      "cordova-plugin-whitelist":{}
+
     },
     "platforms": [
       "browser",

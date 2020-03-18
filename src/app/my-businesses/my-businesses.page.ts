@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Router} from '@angular/router';
 import { HTTP } from '@ionic-native/http/ngx';
@@ -16,6 +17,7 @@ public userid:string = "";
 businessesdata:any;
 loading:any;
   constructor(
+    public navCtrl: NavController,
     public storage:Storage,
     private router: Router,
     private http: HTTP,
@@ -27,32 +29,38 @@ loading:any;
     this.getBussinesses(this.userid);
    });
 
-this.businesses = [];
+this.businesses = [
+// {
+//   		'id':1,
+//   		'businessName':'Hussein Barber',
+//   		'businessPhoneNumber':'70785760',
+//   		'businessDesc':'abc123',
+//   		'businessViews':'30'
+//   	},
+//   	{	'id':2,
+//   		'businessName':'Bilal Barber',
+//   		'businessPhoneNumber':'70785760',
+//   		'businessDesc':'abc1234',
+//   		'businessViews':'10'
+//   	}
+    ];
 
    }
 
   ngOnInit() {
   }
 
-  goToMyBusinessDetails(id){
-    // console.log(id);
-     this.businesses.forEach((val,key)=>{
-       // console.log(val);
-    if(val.businessId == id){
-    this.storage.set('myBusinessDetailsSelected', JSON.stringify(val));
-    this.router.navigate(['my-business-details']);
-  }
-});
-// this.navCtrl.navigateForward('businessdetails/'+ id);
+  goToBusinessDetails(id){
+this.navCtrl.navigateForward('businessdetails/'+ id);
 }
 
 getBussinesses(id){
   this.presentLoading();
      return new Promise((resolve, reject)=>{
-        this.http.get('http://www.brands-tech.com/api/getuserbusinesses',{userId:id},{})
+        this.http.get('http://www.brands-tech.com/api/getuserdata',{userId:id},{})
         .then(data => {
-          this.businesses = JSON.parse(data.data);
-          // this.businesses = this.businessesdata.businesses;
+          this.businessesdata = JSON.parse(data.data);
+          this.businesses = this.businessesdata.businesses;
           this.dismissLoading();
            resolve(true);
           }).catch(err=>{
