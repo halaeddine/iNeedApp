@@ -30,7 +30,7 @@ loading:any;
    public loadingController: LoadingController
    ) {
      this.userdata = {};
-    this.storage.get('userData').then(val=>{
+    this.storage.get('userId').then(val=>{
     this.userid = JSON.stringify(val);
     this.getUserData(this.userid);
    });

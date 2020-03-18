@@ -7,14 +7,16 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list>
+        <ion-list *ngIf="loggedin">
            <div  class="card">
               <div class="header">
                 <div class="avatar">
-                  <img class="img"  src="./assets/player104.png"/>
+                  <img class="img"  [src]="image"/>
                 </div>
               </div>
+              <div class="Username">@{{username}}</div>
             </div>
+            <div class="separate"></div>
         </ion-list>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">

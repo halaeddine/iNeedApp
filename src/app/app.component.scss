@@ -1,8 +1,7 @@
 .card {
     margin: 0 auto;
 
-    .header {
-        height: 150px;
+  
 
         .avatar {
             width: 160px;
@@ -20,6 +19,20 @@
 
 
             }
-        }
+        
     }
 }
+
+ .Username {
+            font-size: 16px;
+            font-weight: 600;
+            color: #303940;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .separate{
+                width: 90%;
+    border-bottom: 1px solid #dedede;
+    margin: 10px auto -5px auto;
+        }

@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './services/authentication.service';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -12,12 +12,15 @@ import { AuthenticationService } from './services/authentication.service';
 export class AppComponent  implements OnInit {
   public selectedIndex = 0; 
   public appPages = [];
-   
+  username:any;
+  image:any;
+  loggedin:boolean;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private auth: AuthenticationService,
+    private storage: Storage,
   ) 
   {
     this.initializeApp();
@@ -27,8 +30,13 @@ export class AppComponent  implements OnInit {
     this.platform.ready().then ( () => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-     
-       this.auth.authenticationState.subscribe(state => {
+     this.storage.get("userData").then(user=>{
+      this.username = JSON.parse(user).username;
+      this.image = JSON.parse(user).image;
+       console.log(JSON.parse(user));
+     });
+     this.auth.authenticationState.subscribe(state => {
+       this.loggedin = true;
         if (state) {
      this.appPages = [
     {
@@ -53,6 +61,7 @@ export class AppComponent  implements OnInit {
     }   
   ]
         } else {
+          this.loggedin = false;
          this.appPages = [
     {
       title: 'Dashboard',
@@ -69,6 +78,8 @@ export class AppComponent  implements OnInit {
     });
 });
   }
+
+
    ngOnInit() {
     const path = window.location.pathname.split('dashboard/')[1];
     if (path !== undefined) {

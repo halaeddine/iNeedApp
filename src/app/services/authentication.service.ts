@@ -71,9 +71,7 @@ export class AuthenticationService {
      return new Promise((resolve, reject)=>{
         this.http.post('http://www.brands-tech.com/api/getuserdata',{userId:id},{})
         .then(data => {
-          // return data;
           this.userdata = JSON.parse(data.data);
-          alert(JSON.stringify(this.userdata));
           resolve(true)
           }).catch(err=>{
           reject(false);
@@ -99,9 +97,11 @@ export class AuthenticationService {
          this.Toast(this.data.desc);
          console.log(data);
          this.storage.set(TOKEN_KEY, this.data.session._token).then(() => {
-              this.storage.set("userData", JSON.parse(this.data.session.userId)).then(() => {
+              this.storage.set("userId", JSON.parse(this.data.session.userId)).then(() => {
+                this.storage.set("userData", JSON.stringify(this.data.userData)).then(() => {
                  this.authenticationState.next(true);
                  this.router.navigateByUrl('/dashboard');
+               });
            });
          });
          break;
