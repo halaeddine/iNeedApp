@@ -5,7 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +17,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     CallNumber,
     SMS,
     NativeGeocoder,
+    GoogleMaps,
+    Geolocation,
     PhotoViewer,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

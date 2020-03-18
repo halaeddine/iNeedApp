@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationExtras } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { HTTP } from '@ionic-native/http/ngx';
+import { LocationService } from '../services/location.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -21,11 +22,19 @@ export class DashboardPage implements OnInit {
   constructor(
     private router: Router,
     private http: HTTP,
+    private location:LocationService,
     private auth: AuthenticationService,
+    // private geolocation: Geolocation,
     public loadingController: LoadingController) {
     this.categories = [];
     this.getAllCategories();
+
+   setTimeout(()=>{
+console.log(this.location.lat);
+   },1000);
 }
+
+
 gotoBusinessesPage(id) {
 var id = id;
           let navigationExtras: NavigationExtras = {
