@@ -23,6 +23,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDvrvnuGMoPIJaOGIj7at08bqpH5K8kGqM" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <platform name="android">

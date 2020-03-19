@@ -5,7 +5,7 @@
       	 <ion-menu-button></ion-menu-button>
       </ion-button>
     </ion-buttons>
-    <ion-title><img src="././assets/header.png" width="100"></ion-title>
+    <ion-title><img class="header-logo" src="././assets/header.png" width="80"></ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
@@ -31,7 +31,7 @@
         </ion-item>
 </ion-list>
 </div>
- <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="goToAddBusiness()">
+ <ion-fab *ngIf="loggedin" vertical="bottom" horizontal="end" slot="fixed" (click)="goToAddBusiness()">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

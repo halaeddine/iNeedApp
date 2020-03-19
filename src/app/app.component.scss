@@ -1,8 +1,6 @@
 .card {
     margin: 0 auto;
 
-  
-
         .avatar {
             width: 160px;
             height: 160px;
@@ -14,7 +12,7 @@
                 border-radius: 50%;
                 position: absolute;
                 top: 0;
-                border: 1px solid #3880ff;
+                border: 1px solid var(--ion-ineed-background);
                 background-color: #fff;
 
 
@@ -33,6 +31,6 @@
         }
         .separate{
                 width: 90%;
-    border-bottom: 1px solid #dedede;
+    border-bottom: 1px solid var(--ion-ineed-background);
     margin: 10px auto -5px auto;
         }

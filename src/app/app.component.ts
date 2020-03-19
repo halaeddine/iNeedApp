@@ -14,7 +14,7 @@ export class AppComponent  implements OnInit {
   public appPages = [];
   username:any;
   image:any;
-  loggedin:boolean;
+  public loggedin:boolean;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -30,13 +30,15 @@ export class AppComponent  implements OnInit {
     this.platform.ready().then ( () => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-     this.storage.get("userData").then(user=>{
+     
+     this.auth.authenticationState.subscribe(state => {
+
+        if (state) {
+           this.loggedin = true;
+       this.storage.get("userData").then(user=>{
       this.username = JSON.parse(user).username;
       this.image = JSON.parse(user).image;
      });
-     this.auth.authenticationState.subscribe(state => {
-       this.loggedin = true;
-        if (state) {
      this.appPages = [
     {
       title: 'Dashboard',

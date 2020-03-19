@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
   public cats:any = [];
   public id:any;
   loading:any;
-  // this.loggedIn:any;
+ loggedin:boolean;
 
   constructor(
     private router: Router,
@@ -30,6 +30,13 @@ export class DashboardPage implements OnInit {
     this.getAllCategories().then(()=>{
          this.setFilteredItems();
      });
+    this.auth.authenticationState.subscribe(state => {
+      if(state){
+        this.loggedin = true;
+      }else{
+        this.loggedin = false;
+      }
+    });
 
 }
 

@@ -33,11 +33,12 @@
 }
 
 .toolbar{
-
-	position: relative;
+        border-bottom:1px solid var(--ion-ineed-background);
+        position: relative;
+        color:var(--ion-ineed-background);
 }
 .searchbar-input{
-    border: 1px solid #ccc !important;
+    border: 1px solid var(--ion-ineed-background) !important;
     border-radius: 30px !important;
     box-shadow: none !important;
 }
