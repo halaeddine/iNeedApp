@@ -4,6 +4,8 @@ import { LocationService } from '../services/location.service';
 import { LoadingController } from '@ionic/angular';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { Storage } from '@ionic/storage';
+import { Router, NavigationExtras } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-business',
@@ -23,12 +25,14 @@ data:any = {
 	businessLng: null,
 	userId: null
 };
+newBusinessId:any;
   constructor(
   	private http: HTTP,
   	public loadingController: LoadingController,
   	private location: LocationService,
   	private nativeGeocoder: NativeGeocoder,
-    private storage: Storage,
+     private storage: Storage,
+     private router: Router,
   	)
 {	 
 	this.getAllCategories();
@@ -41,6 +45,20 @@ data:any = {
   }
 addBusiness(){
 	console.log(this.data);
+      this.presentLoading();
+           return new Promise((resolve, reject)=>{
+            this.http.post('http://www.brands-tech.com/api/addbusiness',this.data,{})
+            .then(data => {
+               this.newBusinessId = JSON.parse(data.data).business;
+               this.storage.set('myBusinessDetailsSelected', JSON.stringify(this.newBusinessId));
+               this.router.navigate(['my-business-details']);
+               this.dismissLoading();
+               resolve(true);
+            }).catch(err=>{
+              reject(err);
+              this.dismissLoading();
+            });
+          });
 }
 
 
@@ -73,11 +91,6 @@ locationFilter(result){
   })
   return _locality;
 }
-
-
-
-
-
 
 getAllCategories(){
   this.presentLoading();
