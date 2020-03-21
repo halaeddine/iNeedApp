@@ -6,6 +6,8 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { Router} from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+import { Crop } from '@ionic-native/crop/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @Component({
   selector: 'app-my-profile',
@@ -25,9 +27,11 @@ loading:any;
    private photoViewer: PhotoViewer,
    public storage:Storage,
    private http: HTTP,
+   private base64: Base64,
    private router: Router,
    public toastController: ToastController,
-   public loadingController: LoadingController
+   public loadingController: LoadingController,
+   private crop: Crop
    ) {
      this.userdata = {};
     this.storage.get('userId').then(val=>{
@@ -35,11 +39,6 @@ loading:any;
     this.getUserData(this.userid);
    });
 
-     // this.platform.ready().then(() => {
-     
-     // this.loaduser();
-   
-     // });
 
   }
   ngOnInit() {     
@@ -51,21 +50,34 @@ showImage(){
 
 
 SelectImage(){
-  // this.auth.uploadProfileImage(this.images);
 	let options= {
             maximumImagesCount: 1,
             allowEdit: true,
-            targetWidth: 100,
-            targetHeight: 100,
+            targetWidth: 200,
+            targetHeight: 200,
             quality: 50,
-            outputType:1
+            outputType:0
       }
+
 	 this.imagePicker.getPictures(options).then((results) => {
-      this.images = results[0];
+     if(results.length > 0){
+         this.images = results[0];
+          this.crop.crop(this.images, {quality: 75})
+              .then(newImage => {
+                this.base64.encodeFile(newImage).then((base64File: string) => {
+                        // alert(base64File);
+                        let coppedImage = base64File.split('base64,')[1];
+                        // alert(coppedImage);
+                        this.uploadProfileImage(coppedImage);
+                      }, (err) => {
+                        alert(err);
+                      });
+                error => alert('Error cropping image'+ error)
+              });
 
-      // alert(this.images);
-
-      // this.uploadProfileImage(this.images);
+     }
+    
+      
       }, (err) => {
         alert(err);
        });
@@ -78,7 +90,7 @@ uploadProfileImage(data){
         .then(data => {
           alert(JSON.stringify(data));
           this.Toast("Profile Image Updated Successfully");
-          this.updatedImage = JSON.parse(data.data).user.image;
+          this.proImage = JSON.parse(data.data).user.image;
           resolve(true);
         }).catch(err=>{
           reject(false);

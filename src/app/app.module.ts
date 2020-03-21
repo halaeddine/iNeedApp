@@ -18,6 +18,8 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { Crop } from '@ionic-native/crop/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +36,8 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     NativeStorage,
     SplashScreen,
     ImagePicker,
+    Crop,
+    Base64,
     CallNumber,
     SMS,
     NativeGeocoder,
