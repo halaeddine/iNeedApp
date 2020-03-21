@@ -8,7 +8,7 @@ import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
-
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.page.html',
@@ -24,6 +24,7 @@ updatedImage:any;
 numBusinesses:any;
 loading:any;
   constructor(private imagePicker: ImagePicker,
+    public appCom: AppComponent,
    private photoViewer: PhotoViewer,
    public storage:Storage,
    private http: HTTP,
@@ -91,6 +92,7 @@ uploadProfileImage(data){
           alert(JSON.stringify(data));
           this.Toast("Profile Image Updated Successfully");
           this.proImage = JSON.parse(data.data).user.image;
+          this.appCom.image = this.proImage;
           resolve(true);
         }).catch(err=>{
           reject(false);
