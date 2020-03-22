@@ -119,7 +119,8 @@ export class AuthenticationService {
        console.log(data);
       this.storage.remove(TOKEN_KEY).then(() => {
         this.storage.remove(userData).then(() => {
-      this.authenticationState.next(false);        
+          this.authenticationState.next(false);
+          this.router.navigateByUrl('/dashboard');        
     });
    });
       }, (err)=>{

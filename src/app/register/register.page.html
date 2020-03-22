@@ -1,9 +1,41 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
+  <ion-toolbar  class="toolbar">
+    <ion-buttons slot="start">
+      <ion-button>
+      	 <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content [fullscreen]="true">
 
-<ion-content>
-
+<form (ngSubmit)="register()">
+	<ion-list class="ion-padding">
+	
+	
+	<ion-item>
+      		<ion-label position="floating">Username <ion-text color="danger">*</ion-text> <ion-text *ngIf="exists" [ngStyle]="{'color': usernameExistColor}">{{usernameExist}}</ion-text></ion-label>
+      		<ion-input [(ngModel)]="data.username" name="username" (ionChange)="checkUserAvailability()"></ion-input>
+      	</ion-item>
+      	<ion-item>
+      		<ion-label position="floating">First Name  <ion-text color="danger">*</ion-text></ion-label>
+      		<ion-input [(ngModel)]="data.fname" name="fname"></ion-input>
+      	</ion-item>
+      	<ion-item>
+      		<ion-label position="floating">Last Name <ion-text color="danger">*</ion-text></ion-label>
+      		<ion-input [(ngModel)]="data.lname" name="lname"></ion-input>
+      	</ion-item>
+      	<ion-item>
+      		<ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+      		<ion-input type="password" [(ngModel)]="data.password" name="password" (ionChange)='comparePasswords()'></ion-input>
+      	</ion-item>
+      	<ion-item>
+      		<ion-label position="floating">Confirm Password <ion-text color="danger">*</ion-text> <ion-icon name="checkmark-circle-outline" [ngStyle]="{'color': passConfirmed}"></ion-icon></ion-label>
+      		<ion-input type="password" [(ngModel)]="data.password2" name="password2" (ionChange)='comparePasswords()'></ion-input>
+      	</ion-item>
+      		<ion-button type="submit" expand="block">Register</ion-button>
+      	
+      </ion-list>
+</form>
 </ion-content>

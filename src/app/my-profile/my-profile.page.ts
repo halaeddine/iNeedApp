@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Storage } from '@ionic/storage';
@@ -23,12 +23,12 @@ proImage:any;
 updatedImage:any;
 numBusinesses:any;
 loading:any;
+private base64: Base64
   constructor(private imagePicker: ImagePicker,
     public appCom: AppComponent,
    private photoViewer: PhotoViewer,
    public storage:Storage,
    private http: HTTP,
-   private base64: Base64,
    private router: Router,
    public toastController: ToastController,
    public loadingController: LoadingController,
@@ -65,20 +65,15 @@ SelectImage(){
          this.images = results[0];
           this.crop.crop(this.images, {quality: 75})
               .then(newImage => {
-                this.base64.encodeFile(newImage).then((base64File: string) => {
-                        // alert(base64File);
-                        let coppedImage = base64File.split('base64,')[1];
-                        // alert(coppedImage);
-                        this.uploadProfileImage(coppedImage);
-                      }, (err) => {
-                        alert(err);
-                      });
-                error => alert('Error cropping image'+ error)
-              });
-
+                // this.base64.encodeFile(newImage).then((base64File: string) => {
+                //         let coppedImage = base64File.split('base64,')[1];
+                //         this.uploadProfileImage(coppedImage);
+                //       }, (err) => {
+                //         alert(err);
+                //       });
+                
+              },error => alert('Error cropping image'+ error));
      }
-    
-      
       }, (err) => {
         alert(err);
        });
