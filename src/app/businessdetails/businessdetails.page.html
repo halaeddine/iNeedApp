@@ -18,7 +18,7 @@
    Category: {{catEn}} / {{catAr}}
  </ion-card-header>
  </ion-card>
- <ion-slides class="slides">
+ <ion-slides class="slides" *ngIf="viewImageSection">
         <ion-slide *ngFor="let image of images">
          <img [src]="image.imagePath" alt=""/>
         </ion-slide>

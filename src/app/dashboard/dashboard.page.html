@@ -12,6 +12,8 @@
   
 
   <div id="container">
+  
+
 <ion-searchbar showCancelButton="never"
     [(ngModel)]="searchTerm"
     (ionChange)="setFilteredItems()"
@@ -30,7 +32,10 @@
           </ion-label>
         </ion-item>
 </ion-list>
+
+
 </div>
+
  <ion-fab *ngIf="loggedin" vertical="bottom" horizontal="end" slot="fixed" (click)="goToAddBusiness()">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>

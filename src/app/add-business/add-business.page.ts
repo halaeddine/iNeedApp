@@ -23,7 +23,8 @@ data:any = {
 	catId: null,
 	businessLat: null,
 	businessLng: null,
-	userId: null
+	userId: null,
+     place:null
 };
 newBusinessId:any;
   constructor(
@@ -78,6 +79,7 @@ geoCoder(lat,lng){
     this.nativeGeocoder.reverseGeocode(lat,lng, options)
       .then((result: NativeGeocoderResult[]) =>{
         this.place = this.locationFilter(result);
+        this.data.place = this.place;
       })
       .catch((error: any) => console.log(error));
 }

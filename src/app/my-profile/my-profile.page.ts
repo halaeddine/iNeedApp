@@ -65,12 +65,12 @@ SelectImage(){
          this.images = results[0];
           this.crop.crop(this.images, {quality: 75})
               .then(newImage => {
-                // this.base64.encodeFile(newImage).then((base64File: string) => {
-                //         let coppedImage = base64File.split('base64,')[1];
-                //         this.uploadProfileImage(coppedImage);
-                //       }, (err) => {
-                //         alert(err);
-                //       });
+                this.base64.encodeFile(newImage).then((base64File: string) => {
+                        let coppedImage = base64File.split('base64,')[1];
+                        this.uploadProfileImage(coppedImage);
+                      }, (err) => {
+                        alert(err);
+                      });
                 
               },error => alert('Error cropping image'+ error));
      }

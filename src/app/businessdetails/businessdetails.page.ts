@@ -38,6 +38,7 @@ catEn:any;
 catAr:any;
 images:any;
 place:any;
+viewImageSection:boolean = false;
   constructor(
     // private route: ActivatedRoute,
     // private router: Router,
@@ -56,7 +57,13 @@ place:any;
        this.views = this.details.businessViews;
        this.catEn = this.details.category.catNameEn;
        this.catAr = this.details.category.catNameAr;
-       this.images = this.details.images;
+       if(this.details.images.length >0){
+         this.viewImageSection = true;
+         this.images = this.details.images;
+       }else{
+         this.viewImageSection = false;
+       }
+       
        console.log(this.details);
      });
    

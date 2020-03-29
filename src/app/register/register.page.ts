@@ -88,7 +88,7 @@ comparePasswords(){
 
 
 presentLoading() {
- this.loading =  this.loadingController.create({
+ this.loadingController.create({
       message: 'Please wait...',
       // duration: 2000
     }).then(res=>{

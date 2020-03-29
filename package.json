@@ -23,6 +23,7 @@
     "@ionic-native/call-number": "^5.22.0",
     "@ionic-native/core": "^5.22.0-beta-1",
     "@ionic-native/crop": "^5.22.0",
+    "@ionic-native/file-transfer": "^5.23.0",
     "@ionic-native/geolocation": "^5.22.0",
     "@ionic-native/google-maps": "^5.5.0",
     "@ionic-native/http": "^5.22.0",
@@ -46,6 +47,7 @@
     "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
@@ -118,7 +120,8 @@
         "ANDROID_SUPPORT_VERSION": "27.+"
       },
       "cordova-plugin-crop": {},
-      "com-badrit-base64": {}
+      "com-badrit-base64": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "browser",

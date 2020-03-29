@@ -18,6 +18,7 @@ export class DashboardPage implements OnInit {
   public id:any;
   loading:any;
  loggedin:boolean;
+ filterHide:boolean = false;
 
   constructor(
     private router: Router,
@@ -39,7 +40,6 @@ export class DashboardPage implements OnInit {
     });
 
 }
-
 
 gotoBusinessesPage(id) {
 var id = id;
