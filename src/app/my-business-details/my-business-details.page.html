@@ -11,14 +11,14 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content overflow-scroll="true">
     <div *ngIf="!edit" id="readonly">
          <ion-card class="welcome-card">
             <ion-card-header>
                 Category: {{catEn}} / {{catAr}}
             </ion-card-header>
         </ion-card>
-        <ion-slides class="slides">
+        <ion-slides class="slides" *ngIf="imagesEnable">
             <ion-slide *ngFor="let image of images">
                 <img [src]="image.imagePath" alt=""/>
             </ion-slide>
@@ -61,7 +61,7 @@
         </ion-button>
     </div>
     <div *ngIf="edit" id="edit">
-        <form (ngsubmit)="applyEditBusiness()">
+        <form (ngSubmit)="applyEditBusiness()">
             <ion-card class="welcome-card">
                 <ion-card-header>
                     <ion-item>
@@ -74,11 +74,12 @@
                     </ion-item>
                 </ion-card-header>
             </ion-card>
+            <p>{{imageUploadData}}</p>
             <div class="slides">
                 <ion-button (click)="addImages()" class="addImages" color="success" size="small">
                     +
                 </ion-button>
-                <ion-slides class="slides">
+                <ion-slides class="slides" *ngIf="imagesEnable">
                     <ion-slide *ngFor="let image of images">
                         <img [src]="image.imagePath" alt=""/>
                         <ion-fab (click)="deleteImage(image.imageId)" horizontal="end" slot="fixed" vertical="top">

@@ -2,7 +2,7 @@ import { Platform, NavController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient  } from '@angular/common/http';
+// import { HttpClient  } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { IonicStorageModule } from '@ionic/storage';
@@ -30,7 +30,7 @@ export class AuthenticationService {
    private storage: Storage,
    private plt: Platform,
    private http: HTTP,
-   private httpp: HttpClient,
+
    public toastController: ToastController,
    private router: Router) { 
     this.plt.ready().then(() => {

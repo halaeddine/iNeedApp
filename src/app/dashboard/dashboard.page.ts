@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationExtras } from '@angular/router';
@@ -13,7 +13,7 @@ import { LocationService } from '../services/location.service';
 export class DashboardPage implements OnInit {
 
   public searchTerm: string = "";
-  public categories:any;
+ categories:any = [];
   public cats:any = [];
   public id:any;
   loading:any;
@@ -27,10 +27,8 @@ export class DashboardPage implements OnInit {
     private auth: AuthenticationService,
     // private geolocation: Geolocation,
     public loadingController: LoadingController) {
-    this.categories = [];
-    this.getAllCategories().then(()=>{
-         this.setFilteredItems();
-     });
+    // this.categories = [];
+    
     this.auth.authenticationState.subscribe(state => {
       if(state){
         this.loggedin = true;
@@ -53,10 +51,11 @@ var id = id;
 
   ngOnInit() {
 
-  
-  
-
-    // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+  }
+  ngAfterViewInit(){
+    this.getAllCategories().then(()=>{
+         this.setFilteredItems();
+     });
   }
 getAllCategories(){
   this.presentLoading();
@@ -64,7 +63,10 @@ getAllCategories(){
         this.http.get('http://www.brands-tech.com/api/getallcategories',{},{})
         .then(data => {
           this.categories = JSON.parse(data.data);
-          this.dismissLoading();
+          setTimeout(()=>{
+              this.dismissLoading();
+          },200);
+        
          resolve(true);
         }).catch(err=>{
           reject(err);

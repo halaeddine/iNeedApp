@@ -25,8 +25,13 @@ export class MyBusinessDetailsPage implements OnInit {
   views:any;
   desc:any;
   images:any;
+  imagesEnable:boolean=false;
   edit:boolean= false;
   data:any = {};
+  imageUploadData:any = {
+    image:null,
+    businessId:null
+  };
   b:any = {};
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +53,9 @@ export class MyBusinessDetailsPage implements OnInit {
        this.catEn = this.details.category.catNameEn;
        this.catAr = this.details.category.catNameAr;
        this.images = this.details.images;
+       if(this.images.length>0){
+         this.imagesEnable = true;
+       }
      });
   };
 
@@ -100,12 +108,16 @@ export class MyBusinessDetailsPage implements OnInit {
 
     uploadBusinessImages(data){
       return new Promise((resolve, reject)=>{
-            this.http.post('http://www.brands-tech.com/api/uploadbusinessimages',{'images':JSON.stringify(data),'businessId':JSON.stringify(this.details.businessId)},{})
+            this.http.post('http://www.brands-tech.com/api/uploadbusinessimages',{data: data},{})
             .then(data => {
               this.Toast("Images Updated Successfully");
               this.images = JSON.parse(data.data).images;
+              if(this.images.length>0){
+         this.imagesEnable = true;
+       }
               resolve(true);
             }).catch(err=>{
+              console.log(err);
               reject(false);
             });
           });
@@ -122,9 +134,14 @@ export class MyBusinessDetailsPage implements OnInit {
           }
 
        this.imagePicker.getPictures(options).then((results) => {
-         alert(results.length);
          if(results.length > 0){
-           this.uploadBusinessImages(results);
+           this.imageUploadData.image = results;
+           this.imageUploadData.businessId = this.details.businessId;
+           alert('image type: '+ typeof(results));
+           alert('image: '+ results);
+           alert('id: '+this.details.businessId);
+           alert(this.imageUploadData);
+           // this.uploadBusinessImages(this.imageUploadData);
          }
           }, (err) => {
             alert(err);
@@ -142,6 +159,9 @@ export class MyBusinessDetailsPage implements OnInit {
             .then(data => {
               if(JSON.parse(data.data).result == 'true'){
                 this.images = JSON.parse(data.data).images;
+                if(this.images.length>0){
+         this.imagesEnable = true;
+       }
               }         
                resolve(true);
               }).catch(err=>{

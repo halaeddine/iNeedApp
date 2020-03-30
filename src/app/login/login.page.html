@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 	  <img class="login-img" src="../assets/icon/favicon.png" />
    
 	  <form (ngSubmit)="loginForm()">
@@ -26,6 +26,5 @@
           	<ion-button type="submit" expand="block">Login</ion-button>
           </form>
           	<ion-button expand="block" color="secondary" routerLink="/register">Register</ion-button>
-
-           
+          <a [routerLink]="['/register']">Don't have an account?</a>
 </ion-content>

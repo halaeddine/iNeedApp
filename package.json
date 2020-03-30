@@ -120,8 +120,7 @@
         "ANDROID_SUPPORT_VERSION": "27.+"
       },
       "cordova-plugin-crop": {},
-      "com-badrit-base64": {},
-      "cordova-plugin-file-transfer": {}
+      "com-badrit-base64": {}
     },
     "platforms": [
       "browser",
