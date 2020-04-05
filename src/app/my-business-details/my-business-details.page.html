@@ -11,59 +11,67 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content overflow-scroll="true">
+<ion-content>
+   
     <div *ngIf="!edit" id="readonly">
-         <ion-card class="welcome-card">
-            <ion-card-header>
+        <ion-item>
+         <!-- <ion-card class="welcome-card"> -->
+            <!-- <ion-card-header> -->
                 Category: {{catEn}} / {{catAr}}
-            </ion-card-header>
-        </ion-card>
+            <!-- </ion-card-header> -->
+        <!-- </ion-card> -->
+    </ion-item>
         <ion-slides class="slides" *ngIf="imagesEnable">
             <ion-slide *ngFor="let image of images">
                 <img [src]="image.imagePath" alt=""/>
             </ion-slide>
         </ion-slides>
-        <ion-row>
-            <ion-col>
-                <ion-card class="welcome-card">
-                    <ion-card-header>
-                        <ion-card-title>
+        <!-- <ion-row>
+            <ion-col> -->
+                <!-- <ion-card class="welcome-card"> -->
+                    <!-- <ion-card-header> -->
+                        <!-- <ion-card-title> -->
+                            <ion-item>
                             {{name}}
-                        </ion-card-title>
-                        <ion-card-subtitle>
+                        <!-- </ion-card-title> -->
+                        <!-- <ion-card-subtitle> -->
+                        </ion-item>
+                            <ion-item>
                             Mobile: {{phoneNumber}}
-                        </ion-card-subtitle>
-                        <ion-card-subtitle>
+                        <!-- </ion-card-subtitle> -->
+                        <!-- <ion-card-subtitle> -->
+                            </ion-item>
+                            <ion-item>
                             View(S): {{views}}
-                        </ion-card-subtitle>
-                    </ion-card-header>
-                </ion-card>
+                        <!-- </ion-card-subtitle> -->
+                    <!-- </ion-card-header> -->
+                <!-- </ion-card> -->
+                <!-- </ion-item>
             </ion-col>
-            <ion-col>
-                <ion-card class="welcome-card">
-                    <ion-card-content>
-                        <p>
+            <ion-col> -->
+                <!-- <ion-card class="welcome-card"> -->
+                    <!-- <ion-card-content> -->
+                        <ion-item>
                             Description:
-                        </p>
-                        <p>
-                            <ion-card-subtitle>
+                        </ion-item>
+                        <ion-item>
+                            <!-- <ion-card-subtitle> -->
                                 {{desc}}
-                            </ion-card-subtitle>
-                        </p>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-        <ion-tabs>
-        </ion-tabs>
+                            <!-- </ion-card-subtitle> -->
+                        </ion-item>
+                    <!-- </ion-card-content> -->
+                <!-- </ion-card> -->
+            <!-- </ion-col> -->
+        <!-- </ion-row> -->
+        
         <ion-button (click)="editBusiness()">
             Edit
         </ion-button>
     </div>
     <div *ngIf="edit" id="edit">
         <form (ngSubmit)="applyEditBusiness()">
-            <ion-card class="welcome-card">
-                <ion-card-header>
+            <!-- <ion-card class="welcome-card"> -->
+                <!-- <ion-card-header> -->
                     <ion-item>
                         Category:
                         <ion-select [(ngModel)]="details.catId" name="category" placeholder="Select One">
@@ -72,9 +80,9 @@
                             </ion-select-option>
                         </ion-select>
                     </ion-item>
-                </ion-card-header>
-            </ion-card>
-            <p>{{imageUploadData}}</p>
+                <!-- </ion-card-header> -->
+            <!-- </ion-card> -->
+            
             <div class="slides">
                 <ion-button (click)="addImages()" class="addImages" color="success" size="small">
                     +
@@ -90,11 +98,11 @@
                     </ion-slide>
                 </ion-slides>
             </div>
-            <ion-row>
-                <ion-col>
-                    <ion-card class="welcome-card">
-                        <ion-card-header>
-                            <ion-card-title>
+            <!-- <ion-row> -->
+                <!-- <ion-col> -->
+                    <!-- <ion-card class="welcome-card"> -->
+                        <!-- <ion-card-header> -->
+                            <!-- <ion-card-title> -->
                                 <ion-item>
                                     <ion-label position="stacked">
                                         Business Name
@@ -105,8 +113,8 @@
                                     <ion-input [(ngModel)]="details.businessName" name="businessName">
                                     </ion-input>
                                 </ion-item>
-                            </ion-card-title>
-                            <ion-card-title>
+                            <!-- </ion-card-title> -->
+                            <!-- <ion-card-title> -->
                                 <ion-item>
                                     <ion-label position="stacked">
                                         Phone Number
@@ -117,18 +125,20 @@
                                     <ion-input [(ngModel)]="details.businessPhoneNumber" name="businessPhoneNumber">
                                     </ion-input>
                                 </ion-item>
-                            </ion-card-title>
-                            <ion-card-subtitle>
+                            <!-- </ion-card-title> -->
+                            <!-- <ion-card-subtitle> -->
+                                <ion-item>
                                 View(S): {{views}}
-                            </ion-card-subtitle>
-                        </ion-card-header>
-                    </ion-card>
-                </ion-col>
-                <ion-col>
-                    <ion-card class="welcome-card">
-                        <ion-card-content>
-                            <p>
-                                <ion-card-title>
+                            </ion-item>
+                            <!-- </ion-card-subtitle> -->
+                        <!-- </ion-card-header> -->
+                    <!-- </ion-card> -->
+                <!-- </ion-col> -->
+                <!-- <ion-col> -->
+                    <!-- <ion-card class="welcome-card"> -->
+                        <!-- <ion-card-content> -->
+                            <!-- <p> -->
+                                <!-- <ion-card-title> -->
                                     <ion-item>
                                         <ion-label position="stacked">
                                             Description
@@ -139,14 +149,13 @@
                                         <ion-input [(ngModel)]="details.businessDesc" name="businessDesc" type="text">
                                         </ion-input>
                                     </ion-item>
-                                </ion-card-title>
-                            </p>
-                        </ion-card-content>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-            <ion-tabs>
-            </ion-tabs>
+                                <!-- </ion-card-title> -->
+                            <!-- </p> -->
+                        <!-- </ion-card-content> -->
+                    <!-- </ion-card> -->
+                <!-- </ion-col> -->
+            <!-- </ion-row> -->
+           
             <ion-button type="submit">
                 Update
             </ion-button>
@@ -155,4 +164,5 @@
             </ion-button>
         </form>
     </div>
+
 </ion-content>

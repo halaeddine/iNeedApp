@@ -28,8 +28,9 @@ export class MyBusinessDetailsPage implements OnInit {
   imagesEnable:boolean=false;
   edit:boolean= false;
   data:any = {};
+  businessImage:any;
   imageUploadData:any = {
-    image:null,
+    image: null,
     businessId:null
   };
   b:any = {};
@@ -108,8 +109,9 @@ export class MyBusinessDetailsPage implements OnInit {
 
     uploadBusinessImages(data){
       return new Promise((resolve, reject)=>{
-            this.http.post('http://www.brands-tech.com/api/uploadbusinessimages',{data: data},{})
+            this.http.post('http://www.brands-tech.com/api/uploadbusinessimages',{image: this.businessImage,businessId:this.details.businessId},{})
             .then(data => {
+              console.log(data);
               this.Toast("Images Updated Successfully");
               this.images = JSON.parse(data.data).images;
               if(this.images.length>0){
@@ -136,16 +138,17 @@ export class MyBusinessDetailsPage implements OnInit {
        this.imagePicker.getPictures(options).then((results) => {
          if(results.length > 0){
            this.imageUploadData.image = results;
+           this.businessImage = results;
            this.imageUploadData.businessId = this.details.businessId;
-           alert('image type: '+ typeof(results));
-           alert('image: '+ results);
-           alert('id: '+this.details.businessId);
-           alert(this.imageUploadData);
-           // this.uploadBusinessImages(this.imageUploadData);
+           // alert('image type: '+ typeof(results));
+           // alert('image: '+ results);
+           // alert('id: '+this.details.businessId);
+           // alert(JSON.stringify(this.imageUploadData.image[0]));
+           this.uploadBusinessImages(this.imageUploadData);
          }
           }, (err) => {
             alert(err);
-           });
+           }); 
     }
 
 

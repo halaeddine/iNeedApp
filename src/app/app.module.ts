@@ -25,7 +25,7 @@ import { Base64 } from '@ionic-native/base64/ngx'; //
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [AppComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

@@ -36,7 +36,6 @@ export class DashboardPage implements OnInit {
         this.loggedin = false;
       }
     });
-
 }
 
 gotoBusinessesPage(id) {
